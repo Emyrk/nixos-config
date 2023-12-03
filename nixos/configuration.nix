@@ -50,14 +50,18 @@ in
   };
 
   # GPU Configuration
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  # TODO: This is only on the desktop
   # services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver = {
+    # Enable the X11 windowing system.
+    enable = true;
+    excludePackages = with pkgs; [
+      xterm
+    ];
+    # Enable the GNOME Desktop Environment.
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -104,6 +108,19 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Adjusts the scaling of the display.
+  # environment.variables = {
+  #   GDK_SCALE = "2";
+  #   GDK_DPI_SCALE = "0.5";
+  # };
+  # Makes Chrome use dark mode by default!
+  environment.etc = {
+    "xdg/gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-application-prefer-dark-theme=1
+    '';
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -114,6 +131,7 @@ in
     wget
     firefox
     gdb
+    dconf
 
     # GPU
     corectrl
@@ -125,7 +143,53 @@ in
     # This has to be done outside home manager, otherwise there is some file conflict.
     (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" ])
     jetbrains.goland
+    (jetbrains.plugins.addPlugins jetbrains.datagrip [ "github-copilot" ])
+    jetbrains.datagrip
   ];
+
+  # Thread about this: https://discourse.nixos.org/t/howto-disable-most-gnome-default-applications-and-what-they-are/13505/11
+  environment.gnome.excludePackages = with pkgs.gnome; [
+    # baobab      # disk usage analyzer
+    # cheese      # photo booth
+    # eog         # image viewer
+    epiphany    # web browser
+    # gedit       # text editor
+    # simple-scan # document scanner
+    totem       # video player
+    yelp        # help viewer
+    # evince      # document viewer
+    # file-roller # archive manager
+    geary       # email client
+    # seahorse    # password manager
+
+    # these should be self explanatory
+    # gnome-calculator 
+    gnome-calendar 
+    # gnome-characters 
+    gnome-clocks 
+    gnome-contacts
+    gnome-font-viewer 
+    # gnome-logs 
+    gnome-maps 
+    gnome-music 
+    # gnome-screenshot
+    # gnome-system-monitor 
+    gnome-weather
+    #  gnome-disk-utility
+    # pkgs.gnome-connections
+  ];
+
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+      thunar-volman
+    ];
+  };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -193,6 +257,8 @@ in
 
   programs.steam = {
     enable = true;
+    # If remote play is crashing, try disabling hardware decoding
+    # settings -> remote play -> advanced client options -> disable hardware decoding
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };

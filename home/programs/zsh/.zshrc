@@ -24,7 +24,10 @@ export EM=$GOPATH/src/github.com/Emyrk
 export NAMESPACE=masley-dogfood
 
 # Some node thing
-export NODE_OPTIONS=--max-old-space-size=8192
+export NODE_OPTIONS=--max-old-space-size=8192\
+
+# Dark theme
+export GTK_THEME=Adwaita:dark
 
 
 ##### Prompt settings

@@ -20,6 +20,11 @@ in
         };
     };
 
+    imports = [
+        # Imports some OS system themeing.
+        ./programs/xfce/xfce.nix
+    ];
+
     home.packages = with pkgs; [
         # Productivity
         google-chrome
@@ -33,6 +38,7 @@ in
         discord
         kubecolor
         peek
+        vlc
 
         # Entertainment
         spotify
@@ -47,7 +53,6 @@ in
         golangci-lint
         elixir
         docker-compose
-        jetbrains.datagrip
         python3
         # python2
         curl
@@ -64,6 +69,7 @@ in
         # Required
         deno # For vscode extensions. Stolen, I mean borrowed from @kylecarbs
         # nix-vscode-extensions
+        dconf2nix # TODO: https://github.com/gvolpe/dconf2nix look into this for customizing the theme with nix
     ];
 
     programs.git = {
