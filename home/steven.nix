@@ -1,6 +1,7 @@
 { pkgs, lib, ... }:
 
 let
+    protoc-gen-go-drpc = pkgs.callPackage ../pkgs/protoc-gen-go-drpc.nix { };
     vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
     vscodeSettings = builtins.fromJSON (builtins.readFile ./programs/vscode/settings.json);
     # nix-vscode-extensions = pkgs.callPackage ../pkgs/nix-vscode-extensions.nix { };
@@ -57,19 +58,27 @@ in
         # python2
         curl
         nodejs-18_x
+        nodejs-18_x.pkgs.pnpm
+        nodejs-18_x.pkgs.typescript
+        nodejs-18_x.pkgs.typescript-language-server
         yarn
         unzip
+        protobuf # protoc
+        protoc-gen-go
+        protoc-gen-go-grpc
+        sqlc
 
         # Cloud
         fly
         google-cloud-sql-proxy
 
-
-
         # Required
         deno # For vscode extensions. Stolen, I mean borrowed from @kylecarbs
         # nix-vscode-extensions
         dconf2nix # TODO: https://github.com/gvolpe/dconf2nix look into this for customizing the theme with nix
+
+        # Custom
+        protoc-gen-go-drpc
     ];
 
     programs.git = {

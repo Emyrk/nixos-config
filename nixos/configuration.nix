@@ -164,7 +164,7 @@ in
 
     # these should be self explanatory
     # gnome-calculator 
-    gnome-calendar 
+    # gnome-calendar 
     # gnome-characters 
     gnome-clocks 
     gnome-contacts
@@ -179,16 +179,17 @@ in
     # pkgs.gnome-connections
   ];
 
-  services.gvfs.enable = true; # Mount, trash, and other functionalities
-  services.tumbler.enable = true; # Thumbnail support for images
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-media-tags-plugin
-      thunar-volman
-    ];
-  };
+  # TODO: Thunar is stuck in light theme, so ignoring it for now.
+  # services.gvfs.enable = true; # Mount, trash, and other functionalities
+  # services.tumbler.enable = true; # Thumbnail support for images
+  # programs.thunar = {
+  #   enable = true;
+  #   plugins = with pkgs.xfce; [
+  #     thunar-archive-plugin
+  #     thunar-media-tags-plugin
+  #     thunar-volman
+  #   ];
+  # };
 
 
   # Some programs need SUID wrappers, can be configured further or are
