@@ -111,6 +111,10 @@ in
     hardinfo
     wget
     firefox
+
+    # This has to be done outside home manager, otherwise there is some file conflict.
+    (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" ])
+    jetbrains.goland
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -43,13 +43,15 @@ in
         git
         gnome.dconf-editor
         go
+        gotools
+        golangci-lint
         elixir
-        jetbrains.goland
+        docker-compose
+
         jetbrains.datagrip
         python3
         # python2
         curl
-        wget
 
         # Hardware
         nvtop-amd
