@@ -84,6 +84,12 @@
     "sha256": "sha256-rk58CJi0zWphfP5Tf2PTv/8Cel8uKdAaC6Njx0CcfWo="
   },
   {
+    "name": "gitlink",
+    "publisher": "qezhu",
+    "version": "1.2.4",
+    "sha256": "sha256-cM4uqptoy4ypG3g0Fui8O10ELd7FAzW2ai4HCcm+W/k="
+  },
+  {
     "publisher": "streetsidesoftware",
     "name": "code-spell-checker",
     "version": "3.0.1",

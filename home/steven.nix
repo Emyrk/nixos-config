@@ -14,8 +14,6 @@ in
     };
 
     programs.home-manager.enable = true;
-    # Screenshot upgrade
-    services.flameshot.enable = true;
     services.syncthing = {
         tray = {
             enable = true;
@@ -33,6 +31,8 @@ in
         nixpkgs-fmt
         jetbrains-toolbox
         discord
+        kubecolor
+        peek
 
         # Entertainment
         spotify
@@ -47,11 +47,19 @@ in
         golangci-lint
         elixir
         docker-compose
-
         jetbrains.datagrip
         python3
         # python2
         curl
+        nodejs-18_x
+        yarn
+        unzip
+
+        # Cloud
+        fly
+        google-cloud-sql-proxy
+
+
 
         # Required
         deno # For vscode extensions. Stolen, I mean borrowed from @kylecarbs

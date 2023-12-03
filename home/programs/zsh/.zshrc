@@ -11,6 +11,7 @@
 # Aliases
 alias vi=vim
 alias grep='grep --color'
+alias kubectl="kubecolor"
 # TODO: Fix antlr!
 # alias antlr='java -jar /usr/local/lib/antlr-4.9.2-complete.jar'
 
@@ -20,7 +21,6 @@ export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export CDR=$GOPATH/src/github.com/cdr
 export EM=$GOPATH/src/github.com/Emyrk
-export PATH=$PATH:$HOME/system/scripts
 export NAMESPACE=masley-dogfood
 
 # Some node thing

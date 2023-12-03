@@ -1,6 +1,7 @@
 { stdenv, lib, fetchurl, makeWrapper, ... }:
 
 # This does not work because it has hard coded paths
+# So this nix file is broken atm
 let
   system = stdenv.system or stdenv.hostPlatform.system;
 in

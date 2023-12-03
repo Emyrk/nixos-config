@@ -96,6 +96,8 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
+  # Add ~/.local/bin to path
+  environment.localBinInPath = true;
   programs.zsh.enable = true;
   nix.settings.allowed-users = ["steven"];
 
@@ -118,6 +120,7 @@ in
     radeon-profile
     radeontop
     nvtop-amd
+    lm_sensors
 
     # This has to be done outside home manager, otherwise there is some file conflict.
     (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" ])
@@ -187,6 +190,13 @@ in
     settings.gui.insecureSkipHostcheck = true;
     settings.gui.insecureAdminAccess = true;
   };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
 
   nix = {
     package = pkgs.nixFlakes;
