@@ -1,0 +1,30 @@
+{
+    "[html]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.inlineSuggest.enabled": true,
+    "files.associations": {
+      "*.gotmpl": "go",
+      "*.tf": "terraform"
+    },
+    "git.mergeEditor": false,
+    "go.coverMode": "atomic",
+    "go.coverShowCounts": true,
+    "go.testFlags": ["-v"],
+    "go.useLanguageServer": true,
+    "gopls": {
+      "ui.semanticTokens": true
+    },
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "window.dialogStyle": "custom",
+    "window.menuBarVisibility": "compact"
+  }
