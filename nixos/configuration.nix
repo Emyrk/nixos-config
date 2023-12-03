@@ -24,6 +24,9 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Useful for VS Code storing credentials.
+  services.gnome.gnome-keyring.enable = true;
+
   # Set your time zone.
   time.timeZone = "America/Chicago";
 
@@ -86,8 +89,10 @@
     isNormalUser = true;
     description = "Steven Masley";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
   };
-  # nix.settings.allowed-users = ["steven"];
+  programs.zsh.enable = true;
+  nix.settings.allowed-users = ["steven"];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -115,7 +120,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -135,12 +140,6 @@
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
-
-  # home-manager.users.steven = { pkgs, ... }: {
-  #   home.packages = with pkgs; [
-  #     spotify
-  #   ];
-  # };
 
   nix = {
     package = pkgs.nixFlakes;

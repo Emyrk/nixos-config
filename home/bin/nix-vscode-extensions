@@ -164,7 +164,7 @@ const repoPath = `${Deno.env.get("HOME")}/projects/kylecarbs/nixos-config`;
 
 let manifestPath = flags._[0] as string;
 if (!manifestPath) {
-  manifestPath = `${repoPath}/home/vscode/extensions.json`;
+  manifestPath = `${repoPath}/home/programs/vscode/extensions.json`;
 }
 
 const writeManifest = async (extensions: ReadonlyArray<Extension>) => {

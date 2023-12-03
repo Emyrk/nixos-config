@@ -2,7 +2,7 @@
 
 switch:
 	if [ `uname -m` = "x86_64" ]; then \
-		sudo nixos-rebuild switch --flake .#desktop-amd64; \
+		sudo nixos-rebuild switch --flake .#desktop-amd64 --show-trace; \
 	else \
 		echo "Unknown 'uname -m' target" ; \
 	fi

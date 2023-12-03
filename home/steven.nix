@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-    vscodeExtensions = builtins.fromJSON (builtins.readFile ./vscode/extensions.json);
-    vscodeSettings = builtins.fromJSON (builtins.readFile ./vscode/settings.json);
+    vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
+    vscodeSettings = builtins.fromJSON (builtins.readFile ./programs/vscode/settings.json);
 in
 {
     home.stateVersion = "23.11";
@@ -13,16 +13,28 @@ in
     };
 
     programs.home-manager.enable = true;
+    # Screenshot upgrade
+    services.flameshot.enable = true;
 
     home.packages = with pkgs; [
+        # Productivity
+        google-chrome
+        slack
+
+        # Entertainment
         spotify
-        # chrome
+
+        # Programming
         vscode
         gnumake
         git
-        nvtop-amd
-        google-chrome
         gnome.dconf-editor
+
+        # Hardware
+        nvtop-amd
+
+        # Required
+        deno # For vscode extensions. Stolen, I mean borrowed from @kylecarbs
     ];
 
     programs.git = {
@@ -32,10 +44,79 @@ in
         userEmail = "stevenmasley@gmail.com";
 
         extraConfig = {
-            push.autoSetupRemote = true;
             init.defaultBranch = "main";
             core.editor = "vim";
+            url."ssh://git@github.com/".insteadOf = [ "https://github.com/" ];
+
+            # TODO: Meld for difftools
         };
+    };
+
+    # https://rycee.gitlab.io/home-manager/options.html#opt-programs.ssh.matchBlocks
+    programs.ssh.matchBlocks = {
+        # Use the specified ssh key for github
+        "github.com" = {
+            hostname = "github.com";
+            identityfile =" ~/.ssh/github";
+        };
+    };
+
+    programs.vim = {
+        enable = true;
+        extraConfig = builtins.readFile ./programs/vim/vimrc;
+        plugins = with pkgs.vimPlugins; [
+            vim-elixir
+            # vim-mix-format
+            rust-vim
+            vim-go
+        ];
+    };
+
+    programs.autojump.enable = true;
+    programs.zsh = {
+        enable = true;
+        shellAliases = {
+            ll = "ls -l";
+        };
+        # histSize = 100000;
+        # histFile = "./zsh/history";
+        syntaxHighlighting = {
+            enable = true;
+        };
+        enableAutosuggestions = true;
+
+        zplug = {
+            enable = true;
+            plugins = [
+                # { name = "zsh-users/zsh-autosuggestions"; } # Simple plugin installation
+                # { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
+            ];
+        };
+        # initExtraBeforeCompInit = ''
+        #     # p10k instant prompt
+        #     P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
+        #     [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
+        #     '';
+        initExtra = builtins.readFile ./programs/zsh/.zshrc;
+
+
+        plugins = [
+            {
+                name = "powerlevel10k";
+                src = pkgs.zsh-powerlevel10k;
+                file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+            }
+            # {
+            #     file = "powerlevel10k.zsh-theme";
+            #     name = "powerlevel10k";
+            #     src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
+            # }
+            {
+                name = "powerlevel10k-config";
+                src = ./programs/zsh/p10k-config;
+                file = "p10k.zsh";
+            }
+        ];
     };
 
     # programs.vscode = {
@@ -47,4 +128,12 @@ in
     #         pkgs.vscode-extensions.hashicorp.terraform
     #     ];
     # };
+
+    # Add in binaries
+    home.file = {
+        ".local/bin/" = {
+            source = ./bin;
+            recursive = true;
+        };
+    };
 }
