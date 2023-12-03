@@ -76,6 +76,7 @@ in
         deno # For vscode extensions. Stolen, I mean borrowed from @kylecarbs
         # nix-vscode-extensions
         dconf2nix # TODO: https://github.com/gvolpe/dconf2nix look into this for customizing the theme with nix
+        mockgen
 
         # Custom
         protoc-gen-go-drpc
