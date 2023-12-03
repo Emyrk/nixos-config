@@ -49,10 +49,11 @@ in
     LC_TIME = "en_US.UTF-8";
   };
 
+  # GPU Configuration
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # TODO: This is only on the desktop
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  # services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -105,12 +106,18 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    radeontop
     hddtemp
     lshw
     hardinfo
     wget
     firefox
+    gdb
+
+    # GPU
+    corectrl
+    radeon-profile
+    radeontop
+    nvtop-amd
 
     # This has to be done outside home manager, otherwise there is some file conflict.
     (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" ])

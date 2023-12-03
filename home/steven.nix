@@ -53,9 +53,6 @@ in
         # python2
         curl
 
-        # Hardware
-        nvtop-amd
-
         # Required
         deno # For vscode extensions. Stolen, I mean borrowed from @kylecarbs
         # nix-vscode-extensions
