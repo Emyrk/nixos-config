@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
     vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
@@ -106,14 +106,9 @@ in
                 src = pkgs.zsh-powerlevel10k;
                 file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
             }
-            # {
-            #     file = "powerlevel10k.zsh-theme";
-            #     name = "powerlevel10k";
-            #     src = "${zsh-powerlevel10k}/share/zsh-powerlevel10k";
-            # }
             {
                 name = "powerlevel10k-config";
-                src = ./programs/zsh/p10k-config;
+                src = lib.cleanSource ./programs/zsh/p10k-config;
                 file = "p10k.zsh";
             }
         ];
