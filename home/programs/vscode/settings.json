@@ -26,5 +26,5 @@
     },
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "window.dialogStyle": "custom",
-    "window.menuBarVisibility": "compact"
+    "window.menuBarVisibility": "compact",
   }

@@ -3,6 +3,7 @@
 let
     vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
     vscodeSettings = builtins.fromJSON (builtins.readFile ./programs/vscode/settings.json);
+    # nix-vscode-extensions = pkgs.callPackage ../pkgs/nix-vscode-extensions.nix { };
 in
 {
     home.stateVersion = "23.11";
@@ -20,6 +21,11 @@ in
         # Productivity
         google-chrome
         slack
+        htop
+        dig
+        jq
+        yq
+        nixpkgs-fmt
 
         # Entertainment
         spotify
@@ -35,6 +41,7 @@ in
 
         # Required
         deno # For vscode extensions. Stolen, I mean borrowed from @kylecarbs
+        # nix-vscode-extensions
     ];
 
     programs.git = {
@@ -92,6 +99,9 @@ in
                 # { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
             ];
         };
+        initExtraBeforeCompInit = ''
+            export PATH=$PATH:$HOME/.local/bin
+        '';
         # initExtraBeforeCompInit = ''
         #     # p10k instant prompt
         #     P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
@@ -114,15 +124,15 @@ in
         ];
     };
 
-    # programs.vscode = {
-    #     enable = true;
-    #     # To add new extensions, add them to the vscode-extensions.json file and
-    #     # then run `make update-vscode-extensions`.
-    #     extensions = (pkgs.vscode-utils.extensionsFromVscodeMarketplace vscodeExtensions) ++ [
-    #         # Terraform has a custom build script!
-    #         pkgs.vscode-extensions.hashicorp.terraform
-    #     ];
-    # };
+    programs.vscode = {
+        enable = true;
+        # To add new extensions, add them to the vscode-extensions.json file and
+        # then run `make update-vscode-extensions`.
+        extensions = (pkgs.vscode-utils.extensionsFromVscodeMarketplace vscodeExtensions) ++ [
+        # Terraform has a custom build script!
+        pkgs.vscode-extensions.hashicorp.terraform
+        ];
+    };
 
     # Add in binaries
     home.file = {

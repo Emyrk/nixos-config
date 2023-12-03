@@ -46,6 +46,21 @@ then
 fi
 ####
 
+# Custom ZSH Binds
+bindkey '^ ' autosuggest-accept
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line
+bindkey  "^[[3~"  delete-char
+
+# https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters.md
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+# Default is all text not covered by the highligher
+ZSH_HIGHLIGHT_STYLES[default]='fg=015'
 
 # # Basic auto/tab complete:
 # autoload -U compinit

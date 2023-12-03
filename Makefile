@@ -10,4 +10,4 @@ update:
 	nix flake update
 
 update-vscode-extensions:
-	deno run --allow-run --allow-net --allow-read --allow-write --unstable --no-check scripts/update-vscode-extensions.ts
+	deno run --allow-run --allow-net --allow-read --allow-write --unstable --no-check ~/.local/bin/nix-vscode-extensions
