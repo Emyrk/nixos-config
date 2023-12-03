@@ -16,6 +16,11 @@ in
     programs.home-manager.enable = true;
     # Screenshot upgrade
     services.flameshot.enable = true;
+    services.syncthing = {
+        tray = {
+            enable = true;
+        };
+    };
 
     home.packages = with pkgs; [
         # Productivity
@@ -26,6 +31,8 @@ in
         jq
         yq
         nixpkgs-fmt
+        jetbrains-toolbox
+        discord
 
         # Entertainment
         spotify
@@ -35,6 +42,14 @@ in
         gnumake
         git
         gnome.dconf-editor
+        go
+        elixir
+        jetbrains.goland
+        jetbrains.datagrip
+        python3
+        # python2
+        curl
+        wget
 
         # Hardware
         nvtop-amd
@@ -129,9 +144,10 @@ in
         # To add new extensions, add them to the vscode-extensions.json file and
         # then run `make update-vscode-extensions`.
         extensions = (pkgs.vscode-utils.extensionsFromVscodeMarketplace vscodeExtensions) ++ [
-        # Terraform has a custom build script!
-        pkgs.vscode-extensions.hashicorp.terraform
+            # Terraform has a custom build script!
+            pkgs.vscode-extensions.hashicorp.terraform
         ];
+        userSettings = vscodeSettings;
     };
 
     # Add in binaries
@@ -140,5 +156,11 @@ in
             source = ./bin;
             recursive = true;
         };
+    };
+
+    # Add a .keep file in the Zwift directory so the folder always exists.
+    # Syncthing uses this to sync Zwift workouts to the Zwift station.
+    home.file = {
+        "Desktop/Zwift/.keep".source = builtins.toFile "keep" "";
     };
 }

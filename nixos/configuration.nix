@@ -4,6 +4,10 @@
 
 { config, pkgs, ... }:
 
+let
+  user = "steven";
+
+in
 {
 #   imports =
 #     [ # Include the results of the hardware scan.
@@ -88,7 +92,7 @@
   users.users.steven = {
     isNormalUser = true;
     description = "Steven Masley";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
   programs.zsh.enable = true;
@@ -141,8 +145,41 @@
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
 
+  services.syncthing = {
+      enable = true;
+      openDefaultPorts = true;
+      dataDir = "/home/${user}/.local/share/syncthing";
+      configDir = "/home/${user}/.config/syncthing";
+      user = "${user}";
+      group = "users";
+      guiAddress = "127.0.0.1:8384";
+      overrideFolders = true;
+      overrideDevices = true;
+
+    settings.devices = {
+      "Zwift Machine" = {
+        id = "IJHYRHG-YYO2ERR-TQNJXA2-4LEQ6ZK-PYHXYJP-UFFAMJY-VFHCE7M-2YA6BA2";
+        autoAcceptFolders = true;
+        allowedNetwork = "192.168.86.0/16";
+        addresses = [ "tcp://192.168.86.28:51820" ];
+      };
+    };
+    settings.folders = {
+      "Zwift" = {
+        id = "kgmpk-o27t6";
+        path = "/home/${user}/Desktop/Zwift";
+        devices = [ "Zwift Machine" ];
+      };
+    };
+   
+    settings.options.globalAnnounceEnabled = false; # Only sync on LAN
+    settings.gui.insecureSkipHostcheck = true;
+    settings.gui.insecureAdminAccess = true;
+  };
+
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
   };
+  virtualisation.docker.enable = true;
 }

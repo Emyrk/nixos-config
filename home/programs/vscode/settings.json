@@ -24,7 +24,8 @@
     "gopls": {
       "ui.semanticTokens": true
     },
-    "terminal.integrated.enableMultiLinePasteWarning": false,
     "window.dialogStyle": "custom",
     "window.menuBarVisibility": "compact",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.defaultProfile.linux": "zsh"
   }
