@@ -41,6 +41,7 @@ in
         peek
         vlc
         sublime
+        graphite-cli
 
         # Entertainment
         spotify
