@@ -12,7 +12,9 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.kernelParams = [ "module_blacklist=i915" ];
-  boot.extraModulePackages = [ ];
+  # kernelPackages = unstable.linuxPackages_zen;
+  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
+  # linuxKernel.packages.linux_zen.zenpower.enable = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/9ef7318f-acb4-4740-a0f4-cea856fe686b";

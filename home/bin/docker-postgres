@@ -1,0 +1,21 @@
+#!/bin/sh
+docker run \
+    -v ~/postgres-data:/var/lib/postgresql/data \
+    --env POSTGRES_PASSWORD=postgres \
+    --env POSTGRES_USER=postgres \
+    --env POSTGRES_DB=postgres \
+    --env PGDATA=/tmp \
+    --tmpfs /tmp \
+    --publish 5432:5432 \
+    --name test-postgres-docker \
+    --restart no \
+    --detach \
+    gcr.io/coder-dev-1/postgres:13 \
+    -c shared_buffers=1GB \
+    -c work_mem=1GB \
+    -c effective_cache_size=1GB \
+    -c max_connections=1000 \
+    -c fsync=off \
+    -c synchronous_commit=off \
+    -c full_page_writes=off \
+    -c log_statement=all

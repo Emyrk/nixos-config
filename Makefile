@@ -1,8 +1,5 @@
 .SILENT: switch
 
-./home/bin/coder-dev:
-
-
 switch:
 	if [ `uname -m` = "x86_64" ]; then \
 		sudo nixos-rebuild switch --flake .#desktop-amd64; \

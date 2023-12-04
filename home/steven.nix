@@ -2,6 +2,10 @@
 
 let
     protoc-gen-go-drpc = pkgs.callPackage ../pkgs/protoc-gen-go-drpc.nix { };
+    coder = pkgs.callPackage ../pkgs/coder.nix { };
+    dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
+
+
     vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
     vscodeSettings = builtins.fromJSON (builtins.readFile ./programs/vscode/settings.json);
     vscodeKeybinds = builtins.fromJSON (builtins.readFile ./programs/vscode/keybindings.json);
@@ -43,6 +47,7 @@ in
         vlc
         sublime
         graphite-cli
+        coder
 
         # Entertainment
         spotify
@@ -71,6 +76,7 @@ in
         protoc-gen-go
         protoc-gen-go-grpc
         sqlc
+        dev-coder
 
         # Cloud
         fly
@@ -81,6 +87,7 @@ in
         # nix-vscode-extensions
         dconf2nix # TODO: https://github.com/gvolpe/dconf2nix look into this for customizing the theme with nix
         mockgen
+        openssl
 
         # Custom
         protoc-gen-go-drpc

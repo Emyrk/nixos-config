@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   user = "steven";
@@ -107,6 +107,10 @@ in
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  # Allow dynamic binaries: 
+  # https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos
+  programs.nix-ld.enable = true;
+ 
 
   # Adjusts the scaling of the display.
   # environment.variables = {
@@ -140,8 +144,12 @@ in
     nvtop-amd
     lm_sensors
 
+    # Hardware
+    zenmonitor
+    lm_sensors
+
     # This has to be done outside home manager, otherwise there is some file conflict.
-    (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" ])
+    (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea" ])
     jetbrains.goland
     (jetbrains.plugins.addPlugins jetbrains.datagrip [ "github-copilot" ])
     jetbrains.datagrip
