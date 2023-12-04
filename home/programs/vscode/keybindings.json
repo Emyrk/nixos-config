@@ -45,5 +45,15 @@
     {
         "key": "ctrl+shift+n",
         "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "alt+right",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
     }
 ]

@@ -16,7 +16,13 @@ func main() {
 	flag.BoolVar(&oktaOIDC, "okta-oidc", true, "Use okta oidc for auth")
 	// flag.BoolVar(&githubExternalAuth, "okta-oidc", true, "Use okta oidc for auth")
 
-	flag.Parse()
+	userExtraFlags := []string{}
+	flag.VisitAll(func(f *flag.Flag) {
+		fl := flag.CommandLine.Lookup(f.Name)
+		if fl == nil {
+			userExtraFlags = append(userExtraFlags, fmt.Sprintf("--%s", fl.Name), fl.Value.String())
+		}
+	})
 	coderDir = os.ExpandEnv(coderDir)
 	if len(os.Args) == 1 {
 		usage()
@@ -31,9 +37,11 @@ func main() {
 			extraFlags = append(extraFlags, "--oidc-client-id", os.ExpandEnv("$OKTA_LOCAL_OIDC_CLIENT_ID"))
 			extraFlags = append(extraFlags, "--oidc-client-secret", os.ExpandEnv("$OKTA_LOCAL_OIDC_CLIENT_SECRET"))
 		}
+		extraFlags = append(extraFlags, userExtraFlags...)
 
 		allFlags := append([]string{
 			"--",
+			"--access-url", "localhost:3000",
 			"--postgres-url", "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable",
 		}, extraFlags...)
 		cmd := exec.Command(
