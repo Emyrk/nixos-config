@@ -54,6 +54,12 @@
     "sha256": "sha256-otAq6ul2l64zpRJdekCb7XZiE2vgpLUfM4NUdRPZX8w="
   },
   {
+    "name": "vscode-jetbrains-keybindings",
+    "publisher": "isudox",
+    "version": "0.1.9",
+    "sha256": "sha256-Y+g6eNp4aRqVisyp+LqtN/iSZ6fzkVTFCLPTE3KoYDk="
+  },
+  {
     "name": "elixir-ls",
     "publisher": "jakebecker",
     "version": "0.17.10",
