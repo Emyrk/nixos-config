@@ -79,6 +79,7 @@ in
     protoc-gen-go-grpc
     sqlc
     dev-coder
+    terraform
 
     # Cloud
     fly
