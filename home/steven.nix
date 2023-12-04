@@ -4,6 +4,7 @@ let
     protoc-gen-go-drpc = pkgs.callPackage ../pkgs/protoc-gen-go-drpc.nix { };
     vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
     vscodeSettings = builtins.fromJSON (builtins.readFile ./programs/vscode/settings.json);
+    vscodeKeybinds = builtins.fromJSON (builtins.readFile ./programs/vscode/keybindings.json);
     # nix-vscode-extensions = pkgs.callPackage ../pkgs/nix-vscode-extensions.nix { };
 in
 {
@@ -53,6 +54,7 @@ in
         gnome.dconf-editor
         go
         gotools
+        gopls
         golangci-lint
         elixir
         docker-compose
@@ -173,6 +175,7 @@ in
             pkgs.vscode-extensions.hashicorp.terraform
         ];
         userSettings = vscodeSettings;
+        keybindings = vscodeKeybinds;
     };
 
     # Add in binaries

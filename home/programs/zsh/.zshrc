@@ -19,7 +19,7 @@ alias kubectl="kubecolor"
 export GO111MODULE=on
 export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
-export CDR=$GOPATH/src/github.com/cdr
+export CDR=$GOPATH/src/github.com/coder/coder
 export EM=$GOPATH/src/github.com/Emyrk
 export NAMESPACE=masley-dogfood
 
