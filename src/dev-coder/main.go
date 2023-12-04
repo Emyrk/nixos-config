@@ -41,7 +41,7 @@ func main() {
 
 		allFlags := append([]string{
 			"--",
-			"--access-url", "localhost:3000",
+			"--access-url", "http://localhost:3000",
 			"--postgres-url", "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable",
 		}, extraFlags...)
 		cmd := exec.Command(
