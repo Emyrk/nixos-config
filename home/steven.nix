@@ -40,6 +40,7 @@ in
         kubecolor
         peek
         vlc
+        sublime
 
         # Entertainment
         spotify
