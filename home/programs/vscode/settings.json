@@ -16,6 +16,7 @@
       "*.gotmpl": "go",
       "*.tf": "terraform"
     },
+    "editor.formatOnSave": true,
     "git.mergeEditor": false,
     "go.coverMode": "atomic",
     "go.coverShowCounts": true,
