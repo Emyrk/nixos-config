@@ -5,7 +5,7 @@
 {
   gtk = {
     enable = true;
-      iconTheme = {
+    iconTheme = {
       name = "elementary-Xfce-dark";
       package = pkgs.elementary-xfce-icon-theme;
     };
@@ -13,15 +13,15 @@
       name = "zukitre-dark";
       package = pkgs.zuki-themes;
     };
-    gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
-    gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
-    };
+    # gtk3.extraConfig = {
+    #   Settings = ''
+    #     gtk-application-prefer-dark-theme=1
+    #   '';
+    # };
+    # gtk4.extraConfig = {
+    #   Settings = ''
+    #     gtk-application-prefer-dark-theme=1
+    #   '';
+    # };
   };
 }

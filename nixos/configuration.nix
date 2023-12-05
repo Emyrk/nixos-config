@@ -118,12 +118,12 @@ in
   #   GDK_DPI_SCALE = "0.5";
   # };
   # Makes Chrome use dark mode by default!
-  environment.etc = {
-    "xdg/gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-application-prefer-dark-theme=1
-    '';
-  };
+  # environment.etc = {
+  #   "xdg/gtk-3.0/settings.ini".text = ''
+  #     [Settings]
+  #     gtk-application-prefer-dark-theme=1
+  #   '';
+  # };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

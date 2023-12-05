@@ -105,18 +105,19 @@ in
     peek
     vlc
     sublime
-    graphite-cli
     coder
     zoom-us
+    gnome.dconf-editor
 
     # Entertainment
     spotify
 
     # Programming
+    meld
     vscode
     gnumake
+    graphite-cli
     git
-    gnome.dconf-editor
     go
     gotools
     gopls
@@ -166,6 +167,8 @@ in
       init.defaultBranch = "main";
       core.editor = "vim";
       url."ssh://git@github.com/".insteadOf = [ "https://github.com/" ];
+      difftool."meld".cmd = "meld $LOCAL $REMOTE";
+      mergetool."meld".cmd = "meld $LOCAL $MERGED $REMOTE --output $MERGED";
 
       # TODO: Meld for difftools
     };

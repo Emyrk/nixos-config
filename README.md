@@ -1,3 +1,2 @@
 # Missing
 
-- Gnome extensions
