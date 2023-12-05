@@ -32,18 +32,72 @@ in
   ];
 
   # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
-  #   dconf.settings = {
-  #     "/org/gnome/desktop/wm/preferences/audible-bell" = false;
-  #   };
+  dconf.settings = {
+    # This bell is annoying
+    "org/gnome/desktop/wm/preferences".audible-bell = false;
+    "org/gnome/desktop/wm/preferences".button-layout = "appmenu:minimize,close";
+
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+
+      # `gnome-extensions list --enabled` for a list
+      enabled-extensions = [
+        "dash-to-dock@micxgx.gmail.com"
+        "Vitals@CoreCoding.com"
+        "clipboard-indicator@tudmotu.com"
+      ];
+    };
+
+    # Extension settings
+    # dconf dump / | dconf2nix
+    "org/gnome/shell/extensions/vitals" = {
+      fixed-widths = true;
+      hide-icons = false;
+      hot-sensors = [ "_memory_usage_" "_processor_usage_" "_temperature_k10temp_tccd1_" "_temperature_k10temp_tctl_" ];
+      menu-centered = false;
+      position-in-panel = 1;
+      show-storage = true;
+      show-voltage = false;
+      unit = 1;
+      use-higher-precision = true;
+    };
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme = true;
+      background-opacity = 0.8;
+      click-action = "skip";
+      custom-theme-shrink = false;
+      dash-max-icon-size = 39;
+      dock-position = "LEFT";
+      height-fraction = 1.0;
+      hide-tooltip = false;
+      icon-size-fixed = false;
+      isolate-monitors = true;
+      isolate-workspaces = false;
+      middle-click-action = "launch";
+      multi-monitor = true;
+      preferred-monitor = -2;
+      preferred-monitor-by-connector = "DP-3";
+      preview-size-scale = 0.0;
+      scroll-action = "cycle-windows";
+      shift-click-action = "minimize";
+      shift-middle-click-action = "launch";
+      show-apps-at-top = false;
+    };
+  };
 
   home.packages = with pkgs; [
+    # Gnome extensions
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.vitals
+
     # Productivity
     google-chrome
     slack
     htop
     dig
     jq
-    yq
+    yq-go
     nixpkgs-fmt
     jetbrains-toolbox
     discord
