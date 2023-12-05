@@ -31,6 +31,11 @@ in
     ./programs/xfce/xfce.nix
   ];
 
+  # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
+  #   dconf.settings = {
+  #     "/org/gnome/desktop/wm/preferences/audible-bell" = false;
+  #   };
+
   home.packages = with pkgs; [
     # Productivity
     google-chrome
@@ -48,6 +53,7 @@ in
     sublime
     graphite-cli
     coder
+    zoom-us
 
     # Entertainment
     spotify
@@ -136,6 +142,10 @@ in
     enable = true;
     shellAliases = {
       ll = "ls -l";
+      lcoder = "~/go/bin/coder";
+      vi = "vim";
+      grep = "grep --color";
+      kubctl = "kubecolor";
     };
     # histSize = 100000;
     # histFile = "./zsh/history";

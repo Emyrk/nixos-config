@@ -187,6 +187,8 @@ in
     # pkgs.gnome-connections
   ];
 
+  programs.dconf.enable = true;
+
   # TODO: Thunar is stuck in light theme, so ignoring it for now.
   # services.gvfs.enable = true; # Mount, trash, and other functionalities
   # services.tumbler.enable = true; # Thumbnail support for images

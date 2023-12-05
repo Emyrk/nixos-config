@@ -9,9 +9,6 @@
 
 
 # Aliases
-alias vi=vim
-alias grep='grep --color'
-alias kubectl="kubecolor"
 # TODO: Fix antlr!
 # alias antlr='java -jar /usr/local/lib/antlr-4.9.2-complete.jar'
 
