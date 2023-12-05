@@ -9,10 +9,10 @@ let
 
 in
 {
-#   imports =
-#     [ # Include the results of the hardware scan.
-#       ./hardware-configuration.nix
-#     ];
+  #   imports =
+  #     [ # Include the results of the hardware scan.
+  #       ./hardware-configuration.nix
+  #     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -103,14 +103,14 @@ in
   # Add ~/.local/bin to path
   environment.localBinInPath = true;
   programs.zsh.enable = true;
-  nix.settings.allowed-users = ["steven"];
+  nix.settings.allowed-users = [ "steven" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # Allow dynamic binaries: 
   # https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos
   programs.nix-ld.enable = true;
- 
+
 
   # Adjusts the scaling of the display.
   # environment.variables = {
@@ -160,26 +160,26 @@ in
     # baobab      # disk usage analyzer
     # cheese      # photo booth
     # eog         # image viewer
-    epiphany    # web browser
+    epiphany # web browser
     # gedit       # text editor
     # simple-scan # document scanner
-    totem       # video player
-    yelp        # help viewer
+    totem # video player
+    yelp # help viewer
     # evince      # document viewer
     # file-roller # archive manager
-    geary       # email client
+    geary # email client
     # seahorse    # password manager
 
     # these should be self explanatory
     # gnome-calculator 
     # gnome-calendar 
     # gnome-characters 
-    gnome-clocks 
+    gnome-clocks
     gnome-contacts
-    gnome-font-viewer 
+    gnome-font-viewer
     # gnome-logs 
-    gnome-maps 
-    gnome-music 
+    gnome-maps
+    gnome-music
     # gnome-screenshot
     # gnome-system-monitor 
     gnome-weather
@@ -217,7 +217,8 @@ in
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # The firewalls seems to be messing with Docker port forwarding?
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -233,15 +234,15 @@ in
   ];
 
   services.syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      dataDir = "/home/${user}/.local/share/syncthing";
-      configDir = "/home/${user}/.config/syncthing";
-      user = "${user}";
-      group = "users";
-      guiAddress = "127.0.0.1:8384";
-      overrideFolders = true;
-      overrideDevices = true;
+    enable = true;
+    openDefaultPorts = true;
+    dataDir = "/home/${user}/.local/share/syncthing";
+    configDir = "/home/${user}/.config/syncthing";
+    user = "${user}";
+    group = "users";
+    guiAddress = "127.0.0.1:8384";
+    overrideFolders = true;
+    overrideDevices = true;
 
     settings.devices = {
       "Zwift Machine" = {
@@ -258,7 +259,7 @@ in
         devices = [ "Zwift Machine" ];
       };
     };
-   
+
     settings.options.globalAnnounceEnabled = false; # Only sync on LAN
     settings.gui.insecureSkipHostcheck = true;
     settings.gui.insecureAdminAccess = true;
@@ -277,5 +278,10 @@ in
     package = pkgs.nixFlakes;
     extraOptions = "experimental-features = nix-command flakes";
   };
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    # daemon.settings = {
+
+    # }
+  };
 }
