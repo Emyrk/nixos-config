@@ -109,6 +109,8 @@ in
     zoom-us
     gnome.dconf-editor
     direnv
+    iperf3
+    traceroute
 
     # Entertainment
     spotify
