@@ -21,13 +21,15 @@ func main() {
 	flag.BoolVar(&oktaOIDC, "okta-oidc", true, "Use okta oidc for auth")
 	// flag.BoolVar(&githubExternalAuth, "okta-oidc", true, "Use okta oidc for auth")
 
+	flag.Parse()
+
 	userExtraFlags := []string{}
-	flag.VisitAll(func(f *flag.Flag) {
-		fl := flag.CommandLine.Lookup(f.Name)
-		if fl == nil {
-			userExtraFlags = append(userExtraFlags, fmt.Sprintf("--%s", fl.Name), fl.Value.String())
+	for i, arg := range flag.Args() {
+		if arg == "--" && len(flag.Args()) > i+1 {
+			userExtraFlags = append(userExtraFlags, flag.Args()[i+1:]...)
 		}
-	})
+	}
+
 	coderDir = os.ExpandEnv(coderDir)
 	if len(os.Args) == 1 {
 		usage()
