@@ -108,6 +108,7 @@ in
     coder
     zoom-us
     gnome.dconf-editor
+    direnv
 
     # Entertainment
     spotify

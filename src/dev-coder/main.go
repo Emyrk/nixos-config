@@ -7,9 +7,14 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 )
 
 func main() {
+	_, ok := os.LookupEnv("CODER_ENVRC_LOADED")
+	if !ok {
+		_, _ = fmt.Fprintf(os.Stderr, "This command expects a .envrc file to be sourced first. Set 'CODER_ENVRC_LOADED' to silence this warning.\n")
+	}
 	var coderDir string
 	var oktaOIDC bool
 	flag.StringVar(&coderDir, "coder-dir", "$CDR", ":ocation of coder repo")
@@ -53,6 +58,8 @@ func main() {
 		cmd.Stdin = os.Stdin
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
+
+		fmt.Printf("Running: %s %s\n", cmd.Path, strings.Join(cmd.Args, " "))
 		err := cmd.Run()
 		if err != nil {
 			log.Fatal(err.Error())
