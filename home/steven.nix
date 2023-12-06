@@ -169,6 +169,8 @@ in
       url."ssh://git@github.com/".insteadOf = [ "https://github.com/" ];
       difftool."meld".cmd = "meld $LOCAL $REMOTE";
       mergetool."meld".cmd = "meld $LOCAL $MERGED $REMOTE --output $MERGED";
+      # removet those .orig files
+      mergetool."keepBackup" = false;
 
       # TODO: Meld for difftools
     };

@@ -17,6 +17,12 @@
       "*.tf": "terraform"
     },
     "editor.formatOnSave": true,
+    "[bash]": {
+      "editor.formatOnSave": false
+    },
+    "[shellscript]": {
+      "editor.formatOnSave": false
+    },
     "git.mergeEditor": false,
     "go.coverMode": "atomic",
     "go.coverShowCounts": true,
