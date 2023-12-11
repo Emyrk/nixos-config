@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "sr_mod" "amdgpu" ];
@@ -17,18 +18,19 @@
   # linuxKernel.packages.linux_zen.zenpower.enable = true;
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/9ef7318f-acb4-4740-a0f4-cea856fe686b";
+    {
+      device = "/dev/disk/by-uuid/9ef7318f-acb4-4740-a0f4-cea856fe686b";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/0984-97C5";
+    {
+      device = "/dev/disk/by-uuid/0984-97C5";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/df262190-add8-4c58-a7b2-b55e055a0ce2"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/df262190-add8-4c58-a7b2-b55e055a0ce2"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -39,10 +41,10 @@
   # networking.interfaces.wlp14s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = true;                                                                                                                                                                         
-  hardware.enableRedistributableFirmware = true;   
-  hardware.opengl.enable = true;                                                                                                                                                                                   
-  hardware.opengl.driSupport = true; 
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
   # This was the default
   # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 

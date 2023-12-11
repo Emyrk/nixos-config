@@ -110,11 +110,13 @@ in
     gnome.dconf-editor
     direnv
     traceroute
+    kubernetes-helm
 
     # Entertainment
     spotify
 
     # Programming
+    go-migrate
     meld
     vscode
     gnumake
