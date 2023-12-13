@@ -129,6 +129,7 @@ in
     elixir
     docker-compose
     python3
+    postgresql_jit
     shellcheck
     # python2
     curl
@@ -145,6 +146,8 @@ in
     sqlc
     dev-coder
     terraform
+    gcc
+    shfmt
 
     # Cloud
     fly
@@ -206,6 +209,7 @@ in
     shellAliases = {
       ll = "ls -l";
       lcoder = "~/go/bin/coder";
+      lsqlc = "~/go/bin/sqlc";
       vi = "vim";
       grep = "grep --color";
       kubctl = "kubecolor";
