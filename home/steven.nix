@@ -131,6 +131,8 @@ in
     python3
     postgresql_jit
     shellcheck
+    gofumpt
+    chromium
     # python2
     curl
     nodejs-18_x
