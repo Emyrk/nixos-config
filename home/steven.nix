@@ -116,6 +116,7 @@ in
     spotify
 
     # Programming
+    sqlite
     go-migrate
     meld
     vscode
