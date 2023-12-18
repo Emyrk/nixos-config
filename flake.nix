@@ -22,7 +22,7 @@
         desktop-amd64 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./hardware/hardware-configuration.nix
+            ./hardware/hardware-configuration.terra.nix
             ./nixos/configuration.nix
             home-manager.nixosModules.home-manager
             {
