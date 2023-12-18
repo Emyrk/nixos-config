@@ -57,10 +57,6 @@
     driversi686Linux.amdvlk
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # ----
 
 }
