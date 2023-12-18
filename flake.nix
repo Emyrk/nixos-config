@@ -19,32 +19,36 @@
     in
     {
       nixosConfigurations = {
-        desktop-amd64 = lib.nixosSystem {
+        # System76 laptop
+        system76 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./hardware/hardware-configuration.terra.nix
+            ./hardware/hardware-configuration.system76.nix
             ./nixos/configuration.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.steven = import ./home/steven.nix; # { inherit pkgs; };
+              home-manager.users.steven = import ./home/steven.nix;
             }
           ];
         };
-
-        # hmConfig = {
-        #   steven = home-manager.lib.homeManagerConfiguration {
-        #     inherit system pkgs;
-        #     username = "steven";
-        #     homeDirectory = "/home/steven";
-        #     configuration = {
-        #       imports = {
-        #         ./home/steven.nix
-        #       };
-        #     };
-        #   }
-        # };
+        # Terra desktop
+        desktop-amd64 = lib.nixosSystem
+          {
+            inherit system;
+            modules = [
+              ./hardware/hardware-configuration.terra.nix
+              ./nixos/configuration.nix
+              ./nixos/amd.pkgs.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.users.steven = import ./home/steven.nix;
+              }
+            ];
+          };
       };
     };
 }

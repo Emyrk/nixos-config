@@ -9,11 +9,6 @@ let
 
 in
 {
-  #   imports =
-  #     [ # Include the results of the hardware scan.
-  #       ./hardware-configuration.nix
-  #     ];
-
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -132,13 +127,6 @@ in
     firefox
     gdb
     dconf
-
-    # GPU
-    corectrl
-    radeon-profile
-    radeontop
-    nvtop-amd
-    lm_sensors
 
     # Hardware
     zenmonitor

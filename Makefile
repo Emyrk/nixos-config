@@ -9,7 +9,7 @@ load:
 	test $(ME_MACHINE) || { echo "Variable ME_MACHINE is required to know what machine config to use."; exit 7; }
 
 whoami: load
-	echo "Machien to be configured: ${ME_MACHINE}""
+	echo "Machine to be configured: ${ME_MACHINE}"
 	
 
 switch: whoami
