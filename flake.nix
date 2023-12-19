@@ -23,7 +23,7 @@
         system76 = lib.nixosSystem {
           inherit system;
           modules = [
-            ./hardware/hardware-configuration.system76.nix
+            ./hardware/hardware-configuration.sys76.nix
             ./nixos/configuration.nix
             home-manager.nixosModules.home-manager
             {

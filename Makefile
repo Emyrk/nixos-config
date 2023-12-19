@@ -15,6 +15,8 @@ whoami: load
 switch: whoami
 	if [ ${ME_MACHINE} = "terra" ]; then \
 		sudo nixos-rebuild switch --flake .#desktop-amd64; \
+	elif [ ${ME_MACHINE} = "sys76" ]; then \
+		sudo nixos-rebuild switch --flake .#system76; \
 	else \
 		echo "Unknown 'uname -m' target" ; \
 	fi
