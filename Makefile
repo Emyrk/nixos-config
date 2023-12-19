@@ -12,6 +12,11 @@ whoami: load
 	echo "Machine to be configured: ${ME_MACHINE}"
 	
 
+cleanup:
+	sudo nix-collect-garbage -d
+
+.PHONY: cleanup
+
 switch: whoami
 	if [ ${ME_MACHINE} = "terra" ]; then \
 		sudo nixos-rebuild switch --flake .#desktop-amd64; \

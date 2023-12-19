@@ -180,14 +180,14 @@ in
   # TODO: Thunar is stuck in light theme, so ignoring it for now.
   # services.gvfs.enable = true; # Mount, trash, and other functionalities
   # services.tumbler.enable = true; # Thumbnail support for images
-  # programs.thunar = {
-  #   enable = true;
-  #   plugins = with pkgs.xfce; [
-  #     thunar-archive-plugin
-  #     thunar-media-tags-plugin
-  #     thunar-volman
-  #   ];
-  # };
+  programs.thunar = {
+    enable = false;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+      thunar-volman
+    ];
+  };
 
 
   # Some programs need SUID wrappers, can be configured further or are
