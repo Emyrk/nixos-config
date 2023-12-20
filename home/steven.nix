@@ -117,6 +117,7 @@ in
     spotify
 
     # Programming
+    gotestsum
     sqlite
     go-migrate
     meld
