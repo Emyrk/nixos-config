@@ -29,6 +29,7 @@ in
   imports = [
     # Imports some OS system themeing.
     ./programs/xfce/xfce.nix
+
   ];
 
   # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/

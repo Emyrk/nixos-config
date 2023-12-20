@@ -176,6 +176,13 @@ in
   ];
 
   programs.dconf.enable = true;
+  services.tailscale.enable = true;
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      #"0 0 * * * root sudo tailscale cert ${MACHINE_NAME}.${TAILNET_NAME}"
+    ];
+  };
 
   # TODO: Thunar is stuck in light theme, so ignoring it for now.
   # services.gvfs.enable = true; # Mount, trash, and other functionalities
