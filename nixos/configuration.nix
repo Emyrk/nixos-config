@@ -21,7 +21,19 @@ in
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    unmanaged = [ "tailscale0" ];
+  };
+
+  systemd.services.NetworkManager-wait-online = {
+    # This is a hack https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+    };
+
+  };
+
 
   # Useful for VS Code storing credentials.
   services.gnome.gnome-keyring.enable = true;
