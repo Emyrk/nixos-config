@@ -218,6 +218,7 @@ in
       vi = "vim";
       grep = "grep --color";
       kubctl = "kubecolor";
+      nix-shell = "nix-shell --run zsh";
     };
     # histSize = 100000;
     # histFile = "./zsh/history";
