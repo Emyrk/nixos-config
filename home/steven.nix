@@ -204,7 +204,7 @@ in
       vim-elixir
       # vim-mix-format
       rust-vim
-      vim-go
+      # vim-go
     ];
   };
 
