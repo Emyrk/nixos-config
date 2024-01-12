@@ -131,7 +131,6 @@ in
     spotify
 
     # Programming
-    lxc
     gotestsum
     sqlite
     go-migrate
