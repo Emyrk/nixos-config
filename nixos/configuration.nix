@@ -118,7 +118,6 @@ in
   # https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos
   programs.nix-ld.enable = true;
 
-
   # Adjusts the scaling of the display.
   # environment.variables = {
   #   GDK_SCALE = "2";

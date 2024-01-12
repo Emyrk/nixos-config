@@ -86,6 +86,9 @@ in
     };
   };
 
+
+
+
   home.packages = with pkgs; [
     # Gnome extensions
     gnomeExtensions.clipboard-indicator
@@ -101,7 +104,18 @@ in
     yq-go
     nixpkgs-fmt
     jetbrains-toolbox
+    # https://github.com/NixOS/nixpkgs/issues/159267#issuecomment-1037372237
+    # Work around #159267
     discord
+    # (pkgs.writeShellApplication {
+    #   name = "discord";
+    #   text = "${pkgs.discord}/bin/discord --use-gl=desktop";
+    # })
+    # (pkgs.makeDesktopItem {
+    #   name = "discord";
+    #   exec = "discord";
+    #   desktopName = "Discord";
+    # })
     kubecolor
     peek
     vlc
@@ -117,6 +131,7 @@ in
     spotify
 
     # Programming
+    lxc
     gotestsum
     sqlite
     go-migrate
@@ -125,7 +140,7 @@ in
     gnumake
     graphite-cli
     git
-    go
+    go_1_21
     gotools
     gopls
     golangci-lint
