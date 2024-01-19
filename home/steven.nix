@@ -117,7 +117,7 @@ in
     #   desktopName = "Discord";
     # })
     kubecolor
-    peek
+    kooha # Screencap
     vlc
     sublime
     coder
