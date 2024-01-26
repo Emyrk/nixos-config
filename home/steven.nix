@@ -96,6 +96,7 @@ in
     gnomeExtensions.vitals
 
     # Productivity
+    ncdu # disk util
     google-chrome
     slack
     htop
@@ -131,6 +132,8 @@ in
     spotify
 
     # Programming
+    gh
+    supabase-cli
     gotestsum
     sqlite
     go-migrate
