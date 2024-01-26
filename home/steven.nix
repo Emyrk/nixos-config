@@ -132,6 +132,7 @@ in
     spotify
 
     # Programming
+    kubectl
     gh
     supabase-cli
     gotestsum
