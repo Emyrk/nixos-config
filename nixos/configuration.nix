@@ -26,6 +26,15 @@ in
     unmanaged = [ "tailscale0" ];
   };
 
+  networking.extraHosts =
+    ''
+      192.168.86.57 homeassistant # 8123
+      192.168.86.20 proxmox # 8006
+      192.168.86.107 proxmox2 # 8006
+      192.168.86.12 screeps # 21025
+    '';
+
+
   systemd.services.NetworkManager-wait-online = {
     # This is a hack https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
     serviceConfig = {
