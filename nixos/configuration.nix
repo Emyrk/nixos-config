@@ -28,10 +28,10 @@ in
 
   networking.extraHosts =
     ''
-      192.168.86.57 homeassistant # 8123
-      192.168.86.20 proxmox # 8006
-      192.168.86.107 proxmox2 # 8006
-      192.168.86.12 screeps # 21025
+      192.168.86.57 homeassistant.internal # 8123
+      192.168.86.20 proxmox.internal # 8006
+      192.168.86.107 proxmox2.internal # 8006
+      192.168.86.12 screeps.internal # 21025
     '';
 
 
