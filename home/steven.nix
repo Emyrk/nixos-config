@@ -142,7 +142,7 @@ in
     vscode
     gnumake
     graphite-cli
-    git
+    # git
     go_1_21
     gotools
     gopls
@@ -204,6 +204,7 @@ in
 
       # TODO: Meld for difftools
     };
+    package = pkgs.gitFull;
   };
 
   # https://rycee.gitlab.io/home-manager/options.html#opt-programs.ssh.matchBlocks
