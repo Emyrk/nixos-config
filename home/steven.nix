@@ -173,7 +173,7 @@ in
     shfmt
 
     # Cloud
-    fly
+    flyctl
     google-cloud-sql-proxy
 
     # Required
