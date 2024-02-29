@@ -132,6 +132,7 @@ in
     spotify
 
     # Programming
+    lsof
     kubectl
     gh
     supabase-cli
