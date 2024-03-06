@@ -202,6 +202,9 @@ in
       mergetool."meld".cmd = "meld $LOCAL $MERGED $REMOTE --output $MERGED";
       # removet those .orig files
       mergetool."keepBackup" = false;
+      gpg.format = "ssh";
+      commit.gpgsign = true;
+      user.signingkey = "~/.ssh/github.pub";
 
       # TODO: Meld for difftools
     };
