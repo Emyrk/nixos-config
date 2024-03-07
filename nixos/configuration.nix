@@ -43,7 +43,6 @@ in
 
   };
 
-
   # Useful for VS Code storing credentials.
   services.gnome.gnome-keyring.enable = true;
 
@@ -193,12 +192,41 @@ in
 
   programs.dconf.enable = true;
   services.tailscale.enable = true;
-  services.cron = {
-    enable = true;
-    systemCronJobs = [
-      #"0 0 * * * root sudo tailscale cert ${MACHINE_NAME}.${TAILNET_NAME}"
-    ];
+
+
+
+  systemd.timers."internet-connectivity" = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "5s";
+      OnUnitActiveSec = "5s";
+      Unit = "internet-connectivity.service";
+    };
   };
+
+  systemd.services."internet-connectivity" = {
+    script = ''
+      OUT=`ping -c 2 -w 20 -W 5 google.com 2>&1 >/dev/null`
+      retVal=$?
+      if [ $retVal -ne 0 ]; then
+          echo "`date` Internet is down" >> /tmp/internet.log
+          echo "   $OUT" >> /tmp/internet.log
+      fi
+
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "steven";
+    };
+  };
+
+  # services.cron = {
+  #   enable = true;
+  #   systemCronJobs = [
+  #     "*/5 * * * *      steven    internetcheck.sh >> /tmp/internet.log"
+  #     #"0 0 * * * root sudo tailscale cert ${MACHINE_NAME}.${TAILNET_NAME}"
+  #   ];
+  # };
 
   # TODO: Thunar is stuck in light theme, so ignoring it for now.
   # services.gvfs.enable = true; # Mount, trash, and other functionalities
