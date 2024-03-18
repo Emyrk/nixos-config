@@ -86,8 +86,8 @@
   {
     "name": "makefile-tools",
     "publisher": "ms-vscode",
-    "version": "0.9.10",
-    "sha256": "sha256-jaUe/TT2PxN/060bfZWNXIzoHIjsqQrIV3X2seR7Yyo="
+    "version": "0.8.16",
+    "sha256": "sha256-rk58CJi0zWphfP5Tf2PTv/8Cel8uKdAaC6Njx0CcfWo="
   },
   {
     "name": "gitlink",
