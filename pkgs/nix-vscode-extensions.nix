@@ -10,7 +10,7 @@ stdenv.mkDerivation rec {
   version = "1.0.0";
 
   src = fetchurl {
-    url = "https://raw.githubusercontent.com/kylecarbs/nixos-config/c87e87d028410a1c3fb99f4e84db12274f93b4cd/bin/nix-vscode-extensions";
+    url = "https://raw.githubusercontent.com/kylecarbs/nixos-config/3ad3bf096ef1d8ee0788cf3157e6005d828702fa/bin/nix-vscode-extensions";
     sha256 = "sha256-8854c5c5df1d981c832715e9fd787c6ec15259b27ba1f03d89e67e3ef5f10fa6";
   };
 
