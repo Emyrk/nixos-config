@@ -86,9 +86,6 @@ in
     };
   };
 
-
-
-
   home.packages = with pkgs; [
     # Gnome extensions
     gnomeExtensions.clipboard-indicator
@@ -96,6 +93,7 @@ in
     gnomeExtensions.vitals
 
     # Productivity
+    gimp # image editor
     ncdu # disk util
     google-chrome
     slack
@@ -130,6 +128,7 @@ in
 
     # Entertainment
     spotify
+
 
     # Programming
     lsof
@@ -248,7 +247,8 @@ in
     syntaxHighlighting = {
       enable = true;
     };
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
+    # enableAutosuggestions = true;
 
     zplug = {
       enable = true;
