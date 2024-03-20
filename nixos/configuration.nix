@@ -78,6 +78,8 @@ in
     displayManager.gdm = {
       enable = true;
       # Wayland breaks discord share screen. Just use x11 for now.
+      # :taco: to @Deansheather for the https://github.com/Vencord/Vesktop reccomendation
+      # TODO: Try out Vencord, and maybe switch back to wayland.
       wayland = false;
     };
     desktopManager.gnome.enable = true;
