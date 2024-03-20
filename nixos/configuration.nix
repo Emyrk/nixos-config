@@ -67,6 +67,7 @@ in
   # GPU Configuration
   # services.xserver.videoDrivers = [ "amdgpu" ];
 
+  # programs.hyprland.enable = true;
   services.xserver = {
     # Enable the X11 windowing system.
     enable = true;
@@ -74,7 +75,11 @@ in
       xterm
     ];
     # Enable the GNOME Desktop Environment.
-    displayManager.gdm.enable = true;
+    displayManager.gdm = {
+      enable = true;
+      # It seems if you do not do this, windows do not run on wayland
+      wayland = true;
+    };
     desktopManager.gnome.enable = true;
     xkb.layout = "us";
     xkb.variant = "";
