@@ -77,8 +77,8 @@ in
     # Enable the GNOME Desktop Environment.
     displayManager.gdm = {
       enable = true;
-      # It seems if you do not do this, windows do not run on wayland
-      wayland = true;
+      # Wayland breaks discord share screen. Just use x11 for now.
+      wayland = false;
     };
     desktopManager.gnome.enable = true;
     xkb.layout = "us";
@@ -151,6 +151,9 @@ in
     firefox
     gdb
     dconf
+
+    # Used to debug wayland vs x11
+    xorg.xeyes
 
     # Hardware
     zenmonitor
