@@ -2,6 +2,7 @@
 
 let
   protoc-gen-go-drpc = pkgs.callPackage ../pkgs/protoc-gen-go-drpc.nix { };
+  # curseforge = pkgs.callPackage ../pkgs/curseforge.nix { };
   coder = pkgs.callPackage ../pkgs/coder.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
 
@@ -128,6 +129,8 @@ in
 
     # Entertainment
     spotify
+    ferium # curseforge
+    prismlauncher #mc
 
 
     # Programming
