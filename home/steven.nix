@@ -147,7 +147,6 @@ in
     gnumake
     graphite-cli
     # git
-    go_1_21
     gotools
     gopls
     golangci-lint
