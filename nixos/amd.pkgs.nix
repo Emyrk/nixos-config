@@ -4,7 +4,7 @@
     corectrl
     radeon-profile
     radeontop
-    nvtop-amd
+    nvtopPackages.amd
     lm_sensors
   ];
 }

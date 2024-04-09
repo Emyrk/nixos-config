@@ -104,6 +104,7 @@ in
     yq-go
     nixpkgs-fmt
     jetbrains-toolbox
+    inetutils
     # https://github.com/NixOS/nixpkgs/issues/159267#issuecomment-1037372237
     # Work around #159267
     discord
@@ -120,7 +121,7 @@ in
     kooha # Screencap
     vlc
     sublime
-    coder
+    # coder
     zoom-us
     gnome.dconf-editor
     direnv
