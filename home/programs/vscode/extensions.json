@@ -80,14 +80,8 @@
   {
     "publisher": "ms-vscode-remote",
     "name": "remote-ssh",
-    "version": "0.110.2024032215",
-    "sha256": "sha256-rf0B5xz2FyqmA43bTSC1+CBfsV4099sbS5+Ibxqyd5M="
-  },
-  {
-    "name": "makefile-tools",
-    "publisher": "ms-vscode",
-    "version": "0.10.5",
-    "sha256": "sha256-NwCa1v0xbXGxVLHLyoVDupnbOwL0YsaqbqQOqpCRT5s="
+    "version": "0.111.2024040515",
+    "sha256": "sha256-5/Ut3HXVH4owGzkv4CZwn85RLqDpRoJZDy8JD8w9pDU="
   },
   {
     "name": "gitlink",
@@ -105,7 +99,7 @@
     "name": "explorer",
     "publisher": "vitest",
     "version": "0.5.15",
-    "sha256": ""
+    "sha256": "sha256-SBlfZp4ypy5Nan5qJOg2Nae0Y8dfpuygp6aDiXz5MjM="
   },
   {
     "publisher": "zxh404",
