@@ -146,6 +146,7 @@ in
     vscode
     gnumake
     graphite-cli
+    go_1_21
     # git
     gotools
     gopls
@@ -174,6 +175,7 @@ in
     terraform
     gcc
     shfmt
+    pprof
 
     # Cloud
     flyctl

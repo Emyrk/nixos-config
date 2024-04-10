@@ -153,7 +153,6 @@ in
     firefox
     gdb
     dconf
-    go_1_21
 
     # Used to debug wayland vs x11
     xorg.xeyes
