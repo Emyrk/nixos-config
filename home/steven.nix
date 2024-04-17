@@ -135,6 +135,7 @@ in
 
 
     # Programming
+    graphviz
     lsof
     kubectl
     gh
@@ -176,6 +177,7 @@ in
     gcc
     shfmt
     pprof
+    libsForQt5.kcachegrind # callgrind
 
     # Cloud
     flyctl
