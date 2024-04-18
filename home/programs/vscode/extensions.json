@@ -20,14 +20,14 @@
   {
     "publisher": "denoland",
     "name": "vscode-deno",
-    "version": "3.36.0",
-    "sha256": "sha256-xHf7cI+lCPoImdsnqBNJjT7+8UJs9tXXUm+TgiYmCdA="
+    "version": "3.37.0",
+    "sha256": "sha256-sEAqPHjz4AXkNOtnsSNpO4aYavAYsjzdpHYfwWFkfG0="
   },
   {
     "publisher": "eamodio",
     "name": "gitlens",
-    "version": "2024.4.805",
-    "sha256": "sha256-7RC/nbJ4ufRw7XM7xC5gvBAGphZNFs+mulq4j4qnMl0="
+    "version": "2024.4.1805",
+    "sha256": "sha256-2LA3s6DA5gMhsXuzYYMZuNmadMsuQ+jdMauyBojSyTo="
   },
   {
     "publisher": "esbenp",
@@ -44,8 +44,8 @@
   {
     "publisher": "github",
     "name": "copilot",
-    "version": "1.178.811",
-    "sha256": "sha256-JkJWFbnUSyGOz6yduq5jxxcwveEXA1gvPNu8bBTBly4="
+    "version": "1.180.827",
+    "sha256": "sha256-HA1na9FoExIiAay+tEjxWKqpG2+wq4Oww77Gl2Bhciw="
   },
   {
     "publisher": "golang",
@@ -74,8 +74,8 @@
   {
     "publisher": "ms-vscode-remote",
     "name": "remote-containers",
-    "version": "0.356.0",
-    "sha256": "sha256-3s1aQ2ZYj1AryEGhuWp8EOVTtCiI1kU9h5/7iQsJpfs="
+    "version": "0.359.0",
+    "sha256": "sha256-vv55JA4IPqlFlYGTpUe3vXXXg9cF7PgNwbJCOu5yEBM="
   },
   {
     "publisher": "ms-vscode-remote",
@@ -98,8 +98,8 @@
   {
     "name": "explorer",
     "publisher": "vitest",
-    "version": "0.5.15",
-    "sha256": "sha256-SBlfZp4ypy5Nan5qJOg2Nae0Y8dfpuygp6aDiXz5MjM="
+    "version": "0.8.4",
+    "sha256": "sha256-VTVgNdj6BjhCbwOgVnfvEjBp6Ds+T3KEC4E9q//yw1E="
   },
   {
     "publisher": "zxh404",
