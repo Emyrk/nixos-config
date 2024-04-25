@@ -156,12 +156,8 @@ in
       xorg.libXrandr
       xorg.libXtst
       xorg.libXcomposite
-      xorg.libXi
 
       # From https://discourse.nixos.org/t/node2nix-issues/10762
-      libuuid
-      autoreconfHook
-      libGLU
       zlib
       glibc.out
       glibc.static
