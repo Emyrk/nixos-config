@@ -127,7 +127,40 @@ in
   nixpkgs.config.allowUnfree = true;
   # Allow dynamic binaries: 
   # https://unix.stackexchange.com/questions/522822/different-methods-to-run-a-non-nixos-executable-on-nixos
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    # List of libraries
+    # https://github.com/nix-community/nix-index-database
+    libraries = with pkgs; [
+      # From https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/programs/nix-ld.nix#L44C33-L59C7
+      zlib
+      zstd
+      stdenv.cc.cc
+      curl
+      openssl
+      attr
+      libssh
+      bzip2
+      libxml2
+      acl
+      libsodium
+      util-linux
+      xz
+      systemd
+
+      # My custom additions
+      # X11 for rendering stuff
+      xorg.libX11
+      xorg.libXext
+      xorg.libXfixes
+      xorg.libXrandr
+      xorg.libXtst
+      xorg.libXcomposite
+    ];
+  };
+  # https://github.com/nix-community/nix-index?tab=readme-ov-file#usage-as-a-command-not-found-replacement
+  # TODO: Look into this
+  programs.command-not-found.enable = false;
 
   # Adjusts the scaling of the display.
   # environment.variables = {
@@ -144,29 +177,34 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    hddtemp
-    lshw
-    hardinfo
-    wget
-    firefox
-    gdb
-    dconf
+  environment.systemPackages = with pkgs;
+    [
+      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      hddtemp
+      lshw
+      hardinfo
+      wget
+      firefox
+      gdb
+      dconf
 
-    # Used to debug wayland vs x11
-    xorg.xeyes
+      # Used to debug wayland vs x11
+      xorg.xeyes
 
-    # Hardware
-    zenmonitor
-    lm_sensors
+      # Hardware
+      zenmonitor
+      lm_sensors
 
-    # This has to be done outside home manager, otherwise there is some file conflict.
-    (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea" ])
-    jetbrains.goland
-    (jetbrains.plugins.addPlugins jetbrains.datagrip [ "github-copilot" ])
-    jetbrains.datagrip
-  ];
+      # This has to be done outside home manager, otherwise there is some file conflict.
+      (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea" ])
+      jetbrains.goland
+      (jetbrains.plugins.addPlugins jetbrains.datagrip [ "github-copilot" ])
+      jetbrains.datagrip
+
+      # https://github.com/AvaloniaUI/Avalonia/issues/3020
+      xorg.libX11 # for linking dynamic rendering libs
+      xorg.libX11.dev # same as above
+    ];
 
   # Thread about this: https://discourse.nixos.org/t/howto-disable-most-gnome-default-applications-and-what-they-are/13505/11
   environment.gnome.excludePackages = with pkgs.gnome; [
