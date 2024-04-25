@@ -156,6 +156,20 @@ in
       xorg.libXrandr
       xorg.libXtst
       xorg.libXcomposite
+      xorg.libXi
+
+      # From https://discourse.nixos.org/t/node2nix-issues/10762
+      libuuid
+      autoreconfHook
+      libGLU
+      zlib
+      glibc.out
+      glibc.static
+      libpng
+      nasm
+      cairo
+      pango
+      libuuid # canvas
     ];
   };
   # https://github.com/nix-community/nix-index?tab=readme-ov-file#usage-as-a-command-not-found-replacement
