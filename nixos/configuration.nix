@@ -166,6 +166,15 @@ in
       cairo
       pango
       libuuid # canvas
+      # cairo fixes
+      freetype # undefined symbol: FT_Get_Transform
+      libglibutil # undefined symbol: g_memdup2
+      glib # undefined symbol: g_memdup2
+      harfbuzz # undefined symbol: hb_ot_color_has_paint
+      giflib
+      glew
+      mesa
+      librsvg
     ];
   };
   # https://github.com/nix-community/nix-index?tab=readme-ov-file#usage-as-a-command-not-found-replacement
@@ -214,6 +223,22 @@ in
       # https://github.com/AvaloniaUI/Avalonia/issues/3020
       xorg.libX11 # for linking dynamic rendering libs
       xorg.libX11.dev # same as above
+      # Node canvas stuff
+      pango
+      cairo
+      # Fixed cairo issues, see above.
+      freetype
+      libglibutil
+      glib
+      harfbuzz
+      giflib
+      glew
+      mesa
+      librsvg
+      libxisf
+
+      # Required for pixijs/node to headless render
+      xvfb-run
     ];
 
   # Thread about this: https://discourse.nixos.org/t/howto-disable-most-gnome-default-applications-and-what-they-are/13505/11

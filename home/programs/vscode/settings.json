@@ -34,5 +34,8 @@
     "window.dialogStyle": "custom",
     "window.menuBarVisibility": "compact",
     "terminal.integrated.enableMultiLinePasteWarning": false,
-    "terminal.integrated.defaultProfile.linux": "zsh"
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "[dockerfile]": {
+      "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    }
   }
