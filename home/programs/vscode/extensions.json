@@ -75,7 +75,7 @@
     "publisher": "ms-playwright",
     "name": "playwright",
     "version": "1.0.22",
-    "sha256": ""
+    "sha256": "sha256-foTec3GrXsaTkPa9fHaKtPSY/gB86L02AycZmHwxUuI="
   },
   {
     "publisher": "ms-vscode-remote",
