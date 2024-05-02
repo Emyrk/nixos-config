@@ -26,8 +26,8 @@
   {
     "publisher": "eamodio",
     "name": "gitlens",
-    "version": "2024.4.1805",
-    "sha256": "sha256-2LA3s6DA5gMhsXuzYYMZuNmadMsuQ+jdMauyBojSyTo="
+    "version": "2024.5.205",
+    "sha256": "sha256-ZBf3O65ASpALCHHYtAyOmHr4EAY8XVXE6n8VtolBvCM="
   },
   {
     "publisher": "esbenp",
@@ -44,14 +44,14 @@
   {
     "publisher": "github",
     "name": "copilot",
-    "version": "1.180.827",
-    "sha256": "sha256-HA1na9FoExIiAay+tEjxWKqpG2+wq4Oww77Gl2Bhciw="
+    "version": "1.186.854",
+    "sha256": "sha256-AQp/SsDaoVQbnv7EM6kgtOf8qMAsTGxJMLFdc1Mq900="
   },
   {
     "publisher": "golang",
     "name": "go",
-    "version": "0.41.2",
-    "sha256": "sha256-eD/9UBYxf8kmqxuzY+hgAT0bqSiYw/BbDv2gyB63zY0="
+    "version": "0.41.4",
+    "sha256": "sha256-ntrEI/l+UjzqGJmtyfVf/+sZJstZy3fm/PSWKTd7/Q0="
   },
   {
     "name": "vscode-jetbrains-keybindings",
@@ -72,10 +72,16 @@
     "sha256": "sha256-jwOM+6LnHyCkvhOTVSTUZvgx77jAg6hFCCpBqY8AxIg="
   },
   {
+    "publisher": "ms-playwright",
+    "name": "playwright",
+    "version": "1.0.22",
+    "sha256": ""
+  },
+  {
     "publisher": "ms-vscode-remote",
     "name": "remote-containers",
-    "version": "0.359.0",
-    "sha256": "sha256-vv55JA4IPqlFlYGTpUe3vXXXg9cF7PgNwbJCOu5yEBM="
+    "version": "0.364.0",
+    "sha256": "sha256-SCTrJIxXp6+y4X15/zbv7rYnpr5AEyifHPcus/VXkzU="
   },
   {
     "publisher": "ms-vscode-remote",
@@ -98,8 +104,8 @@
   {
     "name": "explorer",
     "publisher": "vitest",
-    "version": "0.8.4",
-    "sha256": "sha256-VTVgNdj6BjhCbwOgVnfvEjBp6Ds+T3KEC4E9q//yw1E="
+    "version": "0.8.6",
+    "sha256": "sha256-TXC4QlulntOQiLng0hY+GJ8OTwjelmRAZ7YqG/rPIos="
   },
   {
     "publisher": "zxh404",
