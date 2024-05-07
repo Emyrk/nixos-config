@@ -135,6 +135,7 @@ in
 
 
     # Programming
+    spicedb-zed
     graphviz
     lsof
     kubectl
