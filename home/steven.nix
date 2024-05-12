@@ -135,6 +135,7 @@ in
 
 
     # Programming
+    open-policy-agent
     spicedb-zed
     graphviz
     lsof
