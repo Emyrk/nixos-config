@@ -67,6 +67,9 @@ in
   # GPU Configuration
   # services.xserver.videoDrivers = [ "amdgpu" ];
 
+  # https://flatpak.org/setup/NixOS
+  services.flatpak.enable = true;
+
   # programs.hyprland.enable = true;
   services.xserver = {
     # Enable the X11 windowing system.
