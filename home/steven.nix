@@ -123,7 +123,7 @@ in
     sublime
     # coder
     zoom-us
-    gnome.dconf-editor
+    dconf-editor
     direnv
     traceroute
     kubernetes-helm

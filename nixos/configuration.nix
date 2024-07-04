@@ -249,14 +249,10 @@ in
     # baobab      # disk usage analyzer
     # cheese      # photo booth
     # eog         # image viewer
-    epiphany # web browser
     # gedit       # text editor
     # simple-scan # document scanner
-    totem # video player
-    yelp # help viewer
     # evince      # document viewer
     # file-roller # archive manager
-    geary # email client
     # seahorse    # password manager
 
     # these should be self explanatory
@@ -265,7 +261,6 @@ in
     # gnome-characters 
     gnome-clocks
     gnome-contacts
-    gnome-font-viewer
     # gnome-logs 
     gnome-maps
     gnome-music
@@ -364,7 +359,7 @@ in
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
-  hardware.opengl.driSupport32Bit = true; # Enables support for 32bit libs that steam uses
+  hardware.opengl.enable32Bit = true; # Enables support for 32bit libs that steam uses
 
   nix = {
     package = pkgs.nixFlakes;

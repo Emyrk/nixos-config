@@ -43,15 +43,14 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = true;
   hardware.enableRedistributableFirmware = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
+  hardware.graphics.enable = true;
   # This was the default
   # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # For AMD GPU from https://nixos.wiki/wiki/AMD_GPU
   # ----
   # TODO: Only for desktop
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     rocmPackages.clr.icd
     amdvlk
     driversi686Linux.amdvlk
