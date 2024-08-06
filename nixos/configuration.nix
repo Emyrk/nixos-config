@@ -118,7 +118,7 @@ in
   users.users.steven = {
     isNormalUser = true;
     description = "Steven Masley";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "openrazer" ];
     shell = pkgs.zsh;
   };
   # Add ~/.local/bin to path
@@ -201,6 +201,9 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs;
     [
+      polychromatic # Razer frontend
+      openrazer-daemon
+
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       hddtemp
       lshw
@@ -319,6 +322,9 @@ in
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
+
+
+  hardware.openrazer.enable = true;
 
   services.syncthing = {
     enable = true;
