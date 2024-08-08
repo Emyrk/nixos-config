@@ -51,7 +51,6 @@ func main() {
 
 		allFlags := append([]string{
 			"--access-url", "http://localhost:3000",
-			"--multi-organization",
 			"--",
 			"--postgres-url", "postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable",
 		}, extraFlags...)
