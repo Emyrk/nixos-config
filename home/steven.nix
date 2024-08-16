@@ -135,6 +135,7 @@ in
 
 
     # Programming
+    wireshark
     open-policy-agent
     spicedb-zed
     graphviz
