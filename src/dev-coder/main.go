@@ -44,7 +44,6 @@ func main() {
 			extraFlags = append(extraFlags, "--oidc-client-id", os.ExpandEnv("$OKTA_LOCAL_OIDC_CLIENT_ID"))
 			extraFlags = append(extraFlags, "--oidc-client-secret", os.ExpandEnv("$OKTA_LOCAL_OIDC_CLIENT_SECRET"))
 			extraFlags = append(extraFlags, "--oidc-scopes", "openid,profile,email,groups")
-			extraFlags = append(extraFlags, "--oidc-group-field", "groups")
 		}
 
 		extraFlags = append(extraFlags, userExtraFlags...)
