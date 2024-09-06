@@ -214,6 +214,9 @@ in
       gpg.format = "ssh";
       commit.gpgsign = true;
       user.signingkey = "~/.ssh/github.pub";
+      # This happened for some reason about dubious ownership.
+      # Does not hurt to have.
+      safe.directory = "*";
 
       # TODO: Meld for difftools
     };
