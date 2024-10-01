@@ -195,6 +195,8 @@ in
 
     # Custom
     protoc-gen-go-drpc
+
+    runelite
   ];
 
   programs.git = {
