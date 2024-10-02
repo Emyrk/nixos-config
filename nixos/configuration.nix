@@ -119,10 +119,17 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker" "openrazer" ];
     shell = pkgs.zsh;
   };
+
+  users.users.gim = {
+    isNormalUser = true;
+    description = "Group Ironman";
+    extraGroups = [ "networkmanager" "wheel" "openrazer" ];
+  };
+
   # Add ~/.local/bin to path
   environment.localBinInPath = true;
   programs.zsh.enable = true;
-  nix.settings.allowed-users = [ "steven" ];
+  nix.settings.allowed-users = [ "steven" "gim" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
