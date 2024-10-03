@@ -120,16 +120,10 @@ in
     shell = pkgs.zsh;
   };
 
-  users.users.gim = {
-    isNormalUser = true;
-    description = "Group Ironman";
-    extraGroups = [ "networkmanager" "wheel" "openrazer" ];
-  };
-
   # Add ~/.local/bin to path
   environment.localBinInPath = true;
   programs.zsh.enable = true;
-  nix.settings.allowed-users = [ "steven" "gim" ];
+  nix.settings.allowed-users = [ "steven" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

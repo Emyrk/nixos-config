@@ -36,7 +36,6 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.steven = import ./home/steven.nix;
-              home-manager.users.gim = import ./home/gim.nix;
             }
           ];
         };
@@ -54,7 +53,6 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.steven = import ./home/steven.nix;
-                home-manager.users.gim = import ./home/gim.nix;
               }
             ];
           };
