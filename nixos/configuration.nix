@@ -47,7 +47,8 @@ in
   services.gnome.gnome-keyring.enable = true;
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  # time.timeZone = "America/Chicago";
+  services.automatic-timezoned.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -261,14 +262,14 @@ in
     # gnome-calculator 
     # gnome-calendar 
     # gnome-characters 
-    gnome-clocks
-    gnome-contacts
+    # gnome-clocks
+    # gnome-contacts
     # gnome-logs 
-    gnome-maps
-    gnome-music
+    # gnome-maps
+    # gnome-music
     # gnome-screenshot
     # gnome-system-monitor 
-    gnome-weather
+    # gnome-weather
     #  gnome-disk-utility
     # pkgs.gnome-connections
   ];
