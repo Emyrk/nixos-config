@@ -197,10 +197,19 @@ in
   #   '';
   # };
 
+  services.mullvad-vpn = {
+    enable = true;
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs;
     [
+      mullvad
+      mullvad-vpn
+      mullvad-browser
+
+
       polychromatic # Razer frontend
       openrazer-daemon
 
