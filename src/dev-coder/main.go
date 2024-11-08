@@ -17,8 +17,10 @@ func main() {
 	}
 	var coderDir string
 	var oktaOIDC bool
+
+	v, ok := os.LookupEnv("CODER_OIDC_ISSUER_URL")
 	flag.StringVar(&coderDir, "coder-dir", "$CDR", ":ocation of coder repo")
-	flag.BoolVar(&oktaOIDC, "okta-oidc", true, "Use okta oidc for auth")
+	flag.BoolVar(&oktaOIDC, "okta-oidc", !(ok && v != ""), "Use okta oidc for auth")
 	// flag.BoolVar(&githubExternalAuth, "okta-oidc", true, "Use okta oidc for auth")
 
 	flag.Parse()
