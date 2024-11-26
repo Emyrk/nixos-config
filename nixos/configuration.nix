@@ -230,7 +230,7 @@ in
       lm_sensors
 
       # This has to be done outside home manager, otherwise there is some file conflict.
-      (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea" ])
+      (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea" "open-policy-agent" "terraform-and-hcl" "antlr-v4" "envfile" "gitlink" ])
       jetbrains.goland
       (jetbrains.plugins.addPlugins jetbrains.datagrip [ "github-copilot" ])
       jetbrains.datagrip
@@ -377,7 +377,7 @@ in
   hardware.graphics.enable32Bit = true; # Enables support for 32bit libs that steam uses
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     extraOptions = "experimental-features = nix-command flakes";
   };
   virtualisation.docker = {
