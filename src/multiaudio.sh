@@ -1,0 +1,1 @@
+nix-shell -p pulseaudioFull.out --run 'pactl load-module module-combine-sink sink_name=combined_4 sinks=bluez_output.60_83_73_E8_C3_B8.1,bluez_output.F8_AB_E5_DE_E8_CC.1'
