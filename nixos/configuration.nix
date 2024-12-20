@@ -230,7 +230,8 @@ in
       lm_sensors
 
       # This has to be done outside home manager, otherwise there is some file conflict.
-      (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea" "open-policy-agent" "terraform-and-hcl" "antlr-v4" "envfile" "gitlink" ])
+      # "open-policy-agent" "terraform-and-hcl" "antlr-v4" "envfile" "gitlink"
+      (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea" ])
       jetbrains.goland
       (jetbrains.plugins.addPlugins jetbrains.datagrip [ "github-copilot" ])
       jetbrains.datagrip
