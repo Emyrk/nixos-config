@@ -84,6 +84,12 @@
     "sha256": "sha256-uhw6Tjp+gNSNgfiMZUcNlyrI2UrRkxF7oOyptJmIuQI="
   },
   {
+    "publisher": "ms-vscode",
+    "name": "cpptools",
+    "version": "1.23.2",
+    "sha256": "sha256-L7s2H+BhPK86cAGtyI+u/P1zU+RqxkYmWyuFGNMlw7Q="
+  },
+  {
     "name": "gitlink",
     "publisher": "qezhu",
     "version": "1.2.4",

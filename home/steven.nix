@@ -163,6 +163,7 @@ in
     gofumpt
     chromium
     # python2
+    arduino
     curl
     nodejs-18_x
     nodejs-18_x.pkgs.pnpm
