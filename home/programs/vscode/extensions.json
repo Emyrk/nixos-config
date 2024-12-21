@@ -8,8 +8,8 @@
   {
     "name": "coder-remote",
     "publisher": "coder",
-    "version": "1.3.5",
-    "sha256": "sha256-KXCL0/bVcqQwOR8SFO+6R0YDCg+aT366LzP9yzo6btw="
+    "version": "1.3.9",
+    "sha256": "sha256-DoJ7IvmnJpfQuT14huth3+zv4zJGJZKt7UZ+erpgMqI="
   },
   {
     "publisher": "dbaeumer",
@@ -20,14 +20,14 @@
   {
     "publisher": "denoland",
     "name": "vscode-deno",
-    "version": "3.42.0",
-    "sha256": "sha256-bfhpIxqHeUph51VBMlKBvdBJIeSO9E1ZitrfVl/MqgQ="
+    "version": "3.43.1",
+    "sha256": "sha256-anRC0OrXLtBGPKuajx9/NogbDEkH9Gruf6/ple0PylI="
   },
   {
     "publisher": "eamodio",
     "name": "gitlens",
-    "version": "2024.10.2405",
-    "sha256": "sha256-IyBVE3m6OukMRTJMCJ1GlLd3l/ZhQPXJgTfQoOckAJA="
+    "version": "2024.12.2104",
+    "sha256": "sha256-BvYgl5qnEXK24jDPGk5Gd/9JvFYDxw9DIsvbKuHoGWA="
   },
   {
     "publisher": "foxundermoon",
@@ -38,14 +38,14 @@
   {
     "publisher": "github",
     "name": "copilot",
-    "version": "1.242.1178",
-    "sha256": "sha256-901bF1cK9DIuucABaL4Gy1cbN2TUGsTAe7uQXLrQtPQ="
+    "version": "1.254.0",
+    "sha256": "sha256-4HbE4UrwFvlCczMOYbjPpDUKN6EMaY+maqjSKn4n/18="
   },
   {
     "publisher": "golang",
     "name": "go",
-    "version": "0.43.2",
-    "sha256": "sha256-LFJLU4Vodo8rGgQ5waxlN70jr0TZUMlknmqfx259egE="
+    "version": "0.45.0",
+    "sha256": "sha256-w/74OCM1uAJzjlJ91eDoac6knD1+Imwfy6pXX9otHsY="
   },
   {
     "name": "vscode-jetbrains-keybindings",
@@ -56,8 +56,8 @@
   {
     "name": "elixir-ls",
     "publisher": "jakebecker",
-    "version": "0.23.1",
-    "sha256": "sha256-rwpaixQbuxVkH4wlKPG4Qk69IylwjfCtyfUcqCuN/e8="
+    "version": "0.25.0",
+    "sha256": "sha256-FgwnUV0pjiz63UXWPs4wXCqfysPHULtnVwk0MkfH+Pw="
   },
   {
     "publisher": "jnoortheen",
@@ -68,20 +68,20 @@
   {
     "publisher": "ms-playwright",
     "name": "playwright",
-    "version": "1.1.11",
-    "sha256": "sha256-PNWeq8NZTrtHI53DOiJXvIMsbKrz433OrYwbggiFa30="
+    "version": "1.1.12",
+    "sha256": "sha256-B6RYsDp1UKZmBRT/GdTPqxGOyCz2wJYKAqYqSLsez+w="
   },
   {
     "publisher": "ms-vscode-remote",
     "name": "remote-containers",
-    "version": "0.389.0",
-    "sha256": "sha256-MJEkqnGu6vXpvEAm1EnqkhWjbokO1lsFQQqhnqUvv3o="
+    "version": "0.395.0",
+    "sha256": "sha256-dYqas9Tdp8brMMaGU4Sz1Qu3+rM0/aaErhPwlaawoaY="
   },
   {
     "publisher": "ms-vscode-remote",
     "name": "remote-ssh",
-    "version": "0.113.2024072315",
-    "sha256": "sha256-s+md+gM5V0EL17LwpiIa3Kbm/AOdYQP0PfOHtnLPYh8="
+    "version": "0.117.2024121915",
+    "sha256": "sha256-uhw6Tjp+gNSNgfiMZUcNlyrI2UrRkxF7oOyptJmIuQI="
   },
   {
     "name": "gitlink",
@@ -92,14 +92,20 @@
   {
     "publisher": "streetsidesoftware",
     "name": "code-spell-checker",
-    "version": "4.0.14",
-    "sha256": "sha256-b87sBCprMMfxsP8lyMM3yI82YvKZd5Jc+Z/x7uflnL0="
+    "version": "4.0.26",
+    "sha256": "sha256-r0HOC8Ix+/Xbizqz4MRA1Yevqr0bEHapJQwQuCy/Xog="
   },
   {
     "name": "explorer",
     "publisher": "vitest",
-    "version": "1.6.1",
-    "sha256": "sha256-EhcgdqAD5BDKwy/ug4aQgDRv3YIqdFAFqGdnHsO0sOU="
+    "version": "1.8.5",
+    "sha256": "sha256-CfbVcodZqbplPMoeEwhNvx8nYl+/Uc800untYD9SRcg="
+  },
+  {
+    "publisher": "vscode-arduino",
+    "name": "vscode-arduino-community",
+    "version": "0.7.2",
+    "sha256": "sha256-1pQM0PJMSCTGFHKXODEth+wBme5bz82Yu99v/K067ds="
   },
   {
     "publisher": "zxh404",
