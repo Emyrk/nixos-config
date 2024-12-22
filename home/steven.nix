@@ -164,6 +164,7 @@ in
     chromium
     # python2
     arduino
+    arduino-cli
     curl
     nodejs-18_x
     nodejs-18_x.pkgs.pnpm

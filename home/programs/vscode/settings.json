@@ -1,41 +1,45 @@
 {
-    "[html]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[json]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescriptreact]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "editor.inlineSuggest.enabled": true,
-    "files.associations": {
-      "*.gotmpl": "go",
-      "*.tf": "terraform"
-    },
-    "editor.formatOnSave": true,
-    "[bash]": {
-      "editor.formatOnSave": false
-    },
-    "[shellscript]": {
-      "editor.formatOnSave": false
-    },
-    "git.mergeEditor": false,
-    "go.coverMode": "atomic",
-    "go.coverShowCounts": true,
-    "go.testFlags": ["-v"],
-    "go.useLanguageServer": true,
-    "gopls": {
-      "ui.semanticTokens": true
-    },
-    "window.dialogStyle": "custom",
-    "window.menuBarVisibility": "compact",
-    "terminal.integrated.enableMultiLinePasteWarning": false,
-    "terminal.integrated.defaultProfile.linux": "zsh",
-    "[dockerfile]": {
-      "editor.defaultFormatter": "ms-azuretools.vscode-docker"
-    }
-  }
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "files.associations": {
+    "*.gotmpl": "go",
+    "*.tf": "terraform"
+  },
+  "editor.formatOnSave": true,
+  "[bash]": {
+    "editor.formatOnSave": false
+  },
+  "[shellscript]": {
+    "editor.formatOnSave": false
+  },
+  "git.mergeEditor": false,
+  "go.coverMode": "atomic",
+  "go.coverShowCounts": true,
+  "go.testFlags": [
+    "-v"
+  ],
+  "go.useLanguageServer": true,
+  "gopls": {
+    "ui.semanticTokens": true
+  },
+  "window.dialogStyle": "custom",
+  "window.menuBarVisibility": "compact",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "arduino.path": "/etc/profiles/per-user/steven/bin/arduino-cli",
+  "arduino.useArduinoCli": true
+}

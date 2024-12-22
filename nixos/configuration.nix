@@ -117,7 +117,7 @@ in
   users.users.steven = {
     isNormalUser = true;
     description = "Steven Masley";
-    extraGroups = [ "networkmanager" "wheel" "docker" "openrazer" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "openrazer" "dialout" ];
     shell = pkgs.zsh;
   };
 
