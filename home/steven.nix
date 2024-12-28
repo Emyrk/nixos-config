@@ -124,6 +124,7 @@ in
     # coder
     zoom-us
     dconf-editor
+    nix-direnv
     direnv
     traceroute
     kubernetes-helm
