@@ -94,6 +94,7 @@ in
     gnomeExtensions.vitals
 
     # Productivity
+    obsidian
     gimp # image editor
     ncdu # disk util
     google-chrome
