@@ -14,7 +14,7 @@ let
 in
 {
   home.stateVersion = "23.11";
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
   home = {
     username = "steven";
     homeDirectory = "/home/steven";
@@ -94,6 +94,7 @@ in
     gnomeExtensions.vitals
 
     # Productivity
+    code-cursor
     obsidian
     gimp # image editor
     ncdu # disk util
