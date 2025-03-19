@@ -205,6 +205,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs;
     [
+      claude-code
       mullvad
       mullvad-vpn
       mullvad-browser
@@ -231,7 +232,7 @@ in
 
       # This has to be done outside home manager, otherwise there is some file conflict.
       # "open-policy-agent" "terraform-and-hcl" "antlr-v4" "envfile" "gitlink"
-      (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea" ])
+      (jetbrains.plugins.addPlugins jetbrains.goland [ "github-copilot" "nixidea"])
       jetbrains.goland
       (jetbrains.plugins.addPlugins jetbrains.datagrip [ "github-copilot" ])
       jetbrains.datagrip
@@ -336,37 +337,37 @@ in
 
   hardware.openrazer.enable = true;
 
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    dataDir = "/home/${user}/.local/share/syncthing";
-    configDir = "/home/${user}/.config/syncthing";
-    user = "${user}";
-    group = "users";
-    guiAddress = "127.0.0.1:8384";
-    overrideFolders = true;
-    overrideDevices = true;
+  # services.syncthing = {
+  #   enable = true;
+  #   openDefaultPorts = true;
+  #   dataDir = "/home/${user}/.local/share/syncthing";
+  #   configDir = "/home/${user}/.config/syncthing";
+  #   user = "${user}";
+  #   group = "users";
+  #   guiAddress = "127.0.0.1:8384";
+  #   overrideFolders = true;
+  #   overrideDevices = true;
 
-    settings.devices = {
-      "Zwift Machine" = {
-        id = "IJHYRHG-YYO2ERR-TQNJXA2-4LEQ6ZK-PYHXYJP-UFFAMJY-VFHCE7M-2YA6BA2";
-        autoAcceptFolders = true;
-        allowedNetwork = "192.168.86.0/16";
-        addresses = [ "tcp://192.168.86.28:51820" ];
-      };
-    };
-    settings.folders = {
-      "Zwift" = {
-        id = "kgmpk-o27t6";
-        path = "/home/${user}/Desktop/Zwift";
-        devices = [ "Zwift Machine" ];
-      };
-    };
+  #   settings.devices = {
+  #     "Zwift Machine" = {
+  #       id = "IJHYRHG-YYO2ERR-TQNJXA2-4LEQ6ZK-PYHXYJP-UFFAMJY-VFHCE7M-2YA6BA2";
+  #       autoAcceptFolders = true;
+  #       allowedNetwork = "192.168.86.0/16";
+  #       addresses = [ "tcp://192.168.86.28:51820" ];
+  #     };
+  #   };
+  #   settings.folders = {
+  #     "Zwift" = {
+  #       id = "kgmpk-o27t6";
+  #       path = "/home/${user}/Desktop/Zwift";
+  #       devices = [ "Zwift Machine" ];
+  #     };
+  #   };
 
-    settings.options.globalAnnounceEnabled = false; # Only sync on LAN
-    settings.gui.insecureSkipHostcheck = true;
-    settings.gui.insecureAdminAccess = true;
-  };
+  #   settings.options.globalAnnounceEnabled = false; # Only sync on LAN
+  #   settings.gui.insecureSkipHostcheck = true;
+  #   settings.gui.insecureAdminAccess = true;
+  # };
 
   programs.steam = {
     enable = true;

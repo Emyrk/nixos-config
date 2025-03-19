@@ -21,11 +21,11 @@ in
   };
 
   programs.home-manager.enable = true;
-  services.syncthing = {
-    tray = {
-      enable = true;
-    };
-  };
+  # services.syncthing = {
+  #   tray = {
+  #     enable = true;
+  #   };
+  # };
 
   imports = [
     # Imports some OS system themeing.
