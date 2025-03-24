@@ -5,6 +5,7 @@ let
   # curseforge = pkgs.callPackage ../pkgs/curseforge.nix { };
   coder = pkgs.callPackage ../pkgs/coder.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
+  runemate = pkgs.callPackage ../pkgs/runemate.nix { };
 
 
   vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
@@ -201,7 +202,7 @@ in
 
     # Custom
     protoc-gen-go-drpc
-
+    runemate
     runelite
   ];
 
