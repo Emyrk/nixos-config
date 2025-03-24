@@ -14,6 +14,9 @@ let
   libXxf86vm = pkgs.xorg.libXxf86vm;
   mesa        = pkgs.mesa;
   gtk3        = pkgs.gtk3;
+  openjfx     = pkgs.openjfx;
+  xwininfo    = pkgs.xorg.xwininfo;
+  xprop       = pkgs.xorg.xprop;
 in
 stdenv.mkDerivation rec {
   pname = "runemate";
@@ -28,7 +31,7 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-hJPgP6mdxvj5AzJVtkYiVHUovPgtgdVC9rRZ8V0N6zk=";
   };
 
-  buildInputs = [ openjdk makeWrapper glib libXxf86vm mesa gtk3];
+  buildInputs = [ openjdk makeWrapper glib libXxf86vm mesa gtk3 openjfx xwininfo xprop];
   sourceRoot = ".";
 
   installPhase = ''
@@ -38,7 +41,8 @@ stdenv.mkDerivation rec {
   # Create a wrapper using makeWrapper that invokes the jar with OpenJDK 17
   makeWrapper ${openjdk}/bin/java $out/bin/runemate-client \
     --add-flags "--add-opens=javafx.graphics/com.sun.javafx.util=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED -jar $out/bin/runemate-client.jar" \
-    --set LD_LIBRARY_PATH "${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:$LD_LIBRARY_PATH"
+    --set LD_LIBRARY_PATH "${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:${openjfx}/lib:$LD_LIBRARY_PATH" \
+    --set PATH "${xwininfo}/bin:${xprop}/bin:$PATH"
   '';
 
   meta = with lib; {
