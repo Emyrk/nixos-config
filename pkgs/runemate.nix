@@ -3,7 +3,7 @@
 let
   system = stdenv.system or stdenv.hostPlatform.system;
   # https://www.reddit.com/r/NixOS/comments/1c1lysh/need_help_building_javafx_projects_on_nixos/kz4ehal/
-  openjdk = (pkgs.jdk17.override { enableJavaFX = true; });
+  openjdk = (pkgs.jdk23.override { enableJavaFX = true; });
   fetchurl = pkgs.fetchurl;
   stdenv = pkgs.stdenv;
   lib = pkgs.lib;
@@ -37,7 +37,7 @@ stdenv.mkDerivation rec {
 
   # Create a wrapper using makeWrapper that invokes the jar with OpenJDK 17
   makeWrapper ${openjdk}/bin/java $out/bin/runemate-client \
-    --add-flags "--add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED -jar $out/bin/runemate-client.jar" \
+    --add-flags "--add-opens=javafx.graphics/com.sun.javafx.util=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED --add-opens=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED -jar $out/bin/runemate-client.jar" \
     --set LD_LIBRARY_PATH "${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:$LD_LIBRARY_PATH"
   '';
 
