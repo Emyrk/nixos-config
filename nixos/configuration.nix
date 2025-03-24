@@ -236,6 +236,7 @@ in
       jetbrains.goland
       (jetbrains.plugins.addPlugins jetbrains.datagrip [ "github-copilot" ])
       jetbrains.datagrip
+      jetbrains.idea-community
 
       # https://github.com/AvaloniaUI/Avalonia/issues/3020
       xorg.libX11 # for linking dynamic rendering libs
