@@ -14,7 +14,7 @@ let
   libXxf86vm = pkgs.xorg.libXxf86vm;
   mesa        = pkgs.mesa;
   gtk3        = pkgs.gtk3;
-  openjfx     = pkgs.openjfx;
+  openjfx = (pkgs.openjfx.override { withWebKit = true; });
   xwininfo    = pkgs.xorg.xwininfo;
   xprop       = pkgs.xorg.xprop;
 in
