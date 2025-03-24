@@ -94,6 +94,7 @@ in
     gnomeExtensions.vitals
 
     # Productivity
+    nixpkgs-fmt
     code-cursor
     obsidian
     gimp # image editor

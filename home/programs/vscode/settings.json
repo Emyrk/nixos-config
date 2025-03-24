@@ -23,6 +23,9 @@
   "[shellscript]": {
     "editor.formatOnSave": false
   },
+  "[nix]": {
+    "editor.formatOnSave": false
+  },
   "git.mergeEditor": false,
   "go.coverMode": "atomic",
   "go.coverShowCounts": true,
