@@ -140,6 +140,7 @@ in
 
 
     # Programming
+    code-cursor
     wireshark
     open-policy-agent
     spicedb-zed
