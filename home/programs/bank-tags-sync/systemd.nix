@@ -1,8 +1,12 @@
+{pkgs ? import <nixpkgs> {}, ...}:
+
+let 
+  bank-tags-sync-pkg = pkgs.callPackage ../../../pkgs/bank-tags-sync.nix { };
+in
 {
   # This module configures the bank-tags-sync service and timer using systemd user services and timers.
   # https://rycee.gitlab.io/home-manager/options.xhtml#opt-systemd.user.services
   systemd.user.services = {
-    # To run immediately, run: systemctl --user start bank-tags-sync.service
     "bank-tags-sync" = {
       Unit = {
         Description = "Sync bank tags.";
@@ -15,7 +19,7 @@
       };
       Service = {
         # ./bin/bank-tags-sync profile sync -r "/home/steven/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM Alt-2611041402141.properties" -s /home/steven/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties
-        ExecStart = "bank-tags-sync profile sync -r \"%h/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM\ Alt-2611041402141.properties\" -s %h/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties";
+        ExecStart = "${bank-tags-sync-pkg}/bin/bank-tags-sync profile sync -r \"%h/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM\ Alt-2611041402141.properties\" -s %h/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties";
         WorkingDirectory = "%h/go/src/github.com/Emyrk/bank-tags-sync";
         Restart = "no";
       };
@@ -36,4 +40,14 @@
     };
   };
 
+# Then
+# systemctl --user daemon-reload
+# systemctl --user enable --now bank-tags-sync.timer
+
+
+# Status
+# systemctl --user status bank-tags-sync.service
+# systemctl --user status bank-tags-sync.timer
+
+# To run immediately, run: systemctl --user start bank-tags-sync.service
 }

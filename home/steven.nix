@@ -32,7 +32,7 @@ in
   imports = [
     # Imports some OS system themeing.
     ./programs/xfce/xfce.nix
-    ./programs/bank-tags-sync/systemd.nix
+    ./programs/bank-tags-sync/systemd.nix 
   ];
 
   # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
