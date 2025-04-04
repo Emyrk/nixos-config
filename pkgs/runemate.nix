@@ -3,7 +3,11 @@
 let
   system = stdenv.system or stdenv.hostPlatform.system;
   # https://www.reddit.com/r/NixOS/comments/1c1lysh/need_help_building_javafx_projects_on_nixos/kz4ehal/
-  openjdk = (pkgs.jdk23.override { enableJavaFX = true; });
+  openjfx = (pkgs.openjfx23.override { withWebKit = true; });
+  openjdk = (pkgs.jdk17.override { 
+    enableJavaFX = true; 
+    openjfx_jdk = openjfx;
+  });
   fetchurl = pkgs.fetchurl;
   stdenv = pkgs.stdenv;
   lib = pkgs.lib;
@@ -14,7 +18,7 @@ let
   libXxf86vm = pkgs.xorg.libXxf86vm;
   mesa        = pkgs.mesa;
   gtk3        = pkgs.gtk3;
-  openjfx = (pkgs.openjfx.override { withWebKit = true; });
+  # openjfx = (pkgs.openjfx.override { withWebKit = true; });
   xwininfo    = pkgs.xorg.xwininfo;
   xprop       = pkgs.xorg.xprop;
 in
@@ -31,7 +35,7 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-hJPgP6mdxvj5AzJVtkYiVHUovPgtgdVC9rRZ8V0N6zk=";
   };
 
-  buildInputs = [ openjdk makeWrapper glib libXxf86vm mesa gtk3 openjfx xwininfo xprop];
+  buildInputs = [ openjdk makeWrapper glib libXxf86vm mesa gtk3 xwininfo xprop openjfx];
   sourceRoot = ".";
 
   installPhase = ''

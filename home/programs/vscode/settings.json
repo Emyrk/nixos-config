@@ -16,9 +16,12 @@
     "*.gotmpl": "go",
     "*.tf": "terraform"
   },
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "[bash]": {
     "editor.formatOnSave": false
+  },
+  "[go]": {
+    "editor.formatOnSave": true
   },
   "[shellscript]": {
     "editor.formatOnSave": false
