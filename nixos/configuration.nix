@@ -6,7 +6,6 @@
 
 let
   user = "steven";
-
 in
 {
   # Bootloader.
@@ -35,6 +34,7 @@ in
     '';
 
 
+  # Enable systemd user services.
   systemd.services.NetworkManager-wait-online = {
     # This is a hack https://github.com/NixOS/nixpkgs/issues/180175#issuecomment-1658731959
     serviceConfig = {
@@ -120,6 +120,9 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker" "openrazer" "dialout" ];
     shell = pkgs.zsh;
   };
+
+  imports = [
+  ];
 
   # Add ~/.local/bin to path
   environment.localBinInPath = true;

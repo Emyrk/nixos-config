@@ -5,7 +5,8 @@ let
   # curseforge = pkgs.callPackage ../pkgs/curseforge.nix { };
   coder = pkgs.callPackage ../pkgs/coder.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
-  runemate = pkgs.callPackage ../pkgs/runemate.nix { };
+  # runemate = pkgs.callPackage ../pkgs/runemate.nix { };
+  bank-tags-sync = pkgs.callPackage ../pkgs/bank-tags-sync.nix { };
 
 
   vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
@@ -31,7 +32,7 @@ in
   imports = [
     # Imports some OS system themeing.
     ./programs/xfce/xfce.nix
-
+    ./programs/bank-tags-sync/systemd.nix
   ];
 
   # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
@@ -203,8 +204,9 @@ in
 
     # Custom
     protoc-gen-go-drpc
-    runemate
+    # runemate
     runelite
+    bank-tags-sync
   ];
 
   programs.git = {
@@ -325,9 +327,5 @@ in
     };
   };
 
-  # Add a .keep file in the Zwift directory so the folder always exists.
-  # Syncthing uses this to sync Zwift workouts to the Zwift station.
-  home.file = {
-    "Desktop/Zwift/.keep".source = builtins.toFile "keep" "";
-  };
+
 }
