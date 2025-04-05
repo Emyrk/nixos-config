@@ -10,10 +10,7 @@ in
     "bank-tags-sync" = {
       Unit = {
         Description = "Sync bank tags.";
-      };
-      unitConfig = {
-        Description = "Bank Tags Sync Service";
-        After = [ "network-online.target" ];
+       After = [ "network-online.target" ];
         # The service will be skipped if this file does not exist.
         ConditionPathExists = ["%h/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM\ Alt-2611041402141.properties" "%h/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties"];
       };
