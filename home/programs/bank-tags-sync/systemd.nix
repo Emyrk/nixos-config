@@ -1,7 +1,7 @@
 {pkgs ? import <nixpkgs> {}, ...}:
 
 let 
-  bank-tags-sync-pkg = pkgs.callPackage ../../../pkgs/bank-tags-sync.nix { };
+  # bank-tags-sync-pkg = pkgs.callPackage ../../../pkgs/bank-tags-sync.nix { };
 in
 {
   # This module configures the bank-tags-sync service and timer using systemd user services and timers.
@@ -10,15 +10,19 @@ in
     "bank-tags-sync" = {
       Unit = {
         Description = "Sync bank tags.";
-       After = [ "network-online.target" ];
+        After = [ "network-online.target" ];
         # The service will be skipped if this file does not exist.
-        ConditionPathExists = ["%h/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM\ Alt-2611041402141.properties" "%h/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties"];
+        ConditionPathExists = [ "%h/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM\ Alt-2611041402141.properties" "%h/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties"];
       };
       Service = {
+        # ExecCondition = "which bank-tags-sync";
         # ./bin/bank-tags-sync profile sync -r "/home/steven/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM Alt-2611041402141.properties" -s /home/steven/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties
-        ExecStart = "${bank-tags-sync-pkg}/bin/bank-tags-sync profile sync -r \"%h/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM\ Alt-2611041402141.properties\" -s %h/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties";
+        ExecStart = "%h/go/bin/bank-tags-sync profile sync -g -r \"%h/.var/app/com.adamcake.Bolt/data/bolt-launcher/.runelite/profiles2/GIM\ Alt-2611041402141.properties\" -s %h/go/src/github.com/Emyrk/bank-tags-sync/profiles/gim.properties";
         WorkingDirectory = "%h/go/src/github.com/Emyrk/bank-tags-sync";
         Restart = "no";
+      };
+      Install = {
+        WantedBy = [ "multi-user.target" ];
       };
     };
   };

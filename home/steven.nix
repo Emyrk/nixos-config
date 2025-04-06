@@ -6,7 +6,7 @@ let
   coder = pkgs.callPackage ../pkgs/coder.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
   # runemate = pkgs.callPackage ../pkgs/runemate.nix { };
-  bank-tags-sync = pkgs.callPackage ../pkgs/bank-tags-sync.nix { };
+  # bank-tags-sync = pkgs.callPackage ../pkgs/bank-tags-sync.nix { };
 
 
   vscodeExtensions = builtins.fromJSON (builtins.readFile ./programs/vscode/extensions.json);
@@ -206,7 +206,7 @@ in
     protoc-gen-go-drpc
     # runemate
     runelite
-    bank-tags-sync
+    # bank-tags-sync
   ];
 
   programs.git = {
