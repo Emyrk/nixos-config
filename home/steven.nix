@@ -13,6 +13,11 @@ let
   vscodeSettings = builtins.fromJSON (builtins.readFile ./programs/vscode/settings.json);
   vscodeKeybinds = builtins.fromJSON (builtins.readFile ./programs/vscode/keybindings.json);
   # nix-vscode-extensions = pkgs.callPackage ../pkgs/nix-vscode-extensions.nix { };
+
+  nodejs = pkgs.nodejs_20;
+  pnpm = pkgs.pnpm_9.override {
+    inherit nodejs; # Ensure it points to the above nodejs version
+  };
 in
 {
   home.stateVersion = "23.11";
@@ -157,7 +162,7 @@ in
     vscode
     gnumake
     graphite-cli
-    go_1_22
+    go_1_24
     # git
     gotools
     gopls
@@ -173,12 +178,20 @@ in
     arduino
     arduino-cli
     curl
-    nodejs-18_x
-    nodejs-18_x.pkgs.pnpm
-    nodejs-18_x.pkgs.typescript
-    nodejs-18_x.pkgs.typescript-language-server
-    nodejs-18_x.pkgs.prettier
-    yarn
+    # Node
+    nodejs
+    nodejs.pkgs.typescript-language-server
+    nodejs.pkgs.typescript
+    nodejs.pkgs.prettier
+    pnpm
+
+    # nodejs-18_x
+    # nodejs-18_x.pkgs.pnpm
+    # nodejs-18_x.pkgs.typescript
+    # nodejs-18_x.pkgs.typescript-language-server
+    # nodejs-18_x.pkgs.prettier
+    # yarn
+    #
     unzip
     protobuf # protoc
     protoc-gen-go
