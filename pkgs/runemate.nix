@@ -3,10 +3,10 @@
 let
   system = stdenv.system or stdenv.hostPlatform.system;
   # https://www.reddit.com/r/NixOS/comments/1c1lysh/need_help_building_javafx_projects_on_nixos/kz4ehal/
-  openjfx = (pkgs.openjfx23.override { withWebKit = true; });
-  openjdk = (pkgs.jdk17.override { 
+  openjfx = (pkgs.openjfx.override { withWebKit = true; });
+  openjdk = (pkgs.jdk23.override { 
     enableJavaFX = true; 
-    openjfx_jdk = openjfx;
+    # openjfx_jdk = openjfx;
   });
   fetchurl = pkgs.fetchurl;
   stdenv = pkgs.stdenv;
@@ -32,7 +32,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url = "https://www.runemate.com/download/client?standalone=true&platform=linux&arch=amd64";
     # sha256 = lib.fakeSha256;
-    sha256 = "sha256-hJPgP6mdxvj5AzJVtkYiVHUovPgtgdVC9rRZ8V0N6zk=";
+    sha256 = "sha256-yPYoq8l/WuogiztmSYBHCUUYyL460eV11zCNGsU3U6I=";
   };
 
   buildInputs = [ openjdk makeWrapper glib libXxf86vm mesa gtk3 xwininfo xprop openjfx];
@@ -45,6 +45,7 @@ stdenv.mkDerivation rec {
   # Create a wrapper using makeWrapper that invokes the jar with OpenJDK 17
   makeWrapper ${openjdk}/bin/java $out/bin/runemate-client \
     --add-flags "\
+      -Djava.library.path=${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:${openjfx}/lib \
       --module-path ${openjfx}/lib --add-modules=javafx.controls,javafx.fxml,javafx.web \
       -Dprism.order=sw \
       --add-opens=javafx.graphics/com.sun.javafx.util=ALL-UNNAMED \
