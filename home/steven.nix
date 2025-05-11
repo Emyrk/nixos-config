@@ -331,7 +331,7 @@ in
       ];
       userSettings = vscodeSettings;
       keybindings = vscodeKeybinds;
-    }
+    };
     enable = true;
   };
 

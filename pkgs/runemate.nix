@@ -3,11 +3,7 @@
 let
   system = stdenv.system or stdenv.hostPlatform.system;
   # https://www.reddit.com/r/NixOS/comments/1c1lysh/need_help_building_javafx_projects_on_nixos/kz4ehal/
-  openjfx = (pkgs.openjfx.override { withWebKit = true; });
-  openjdk = (pkgs.jetbrains.jdk.override { 
-    # enableJavaFX = true; 
-    # openjfx_jdk = openjfx;
-  });
+  openjdk = (pkgs.jdk23.override { enableJavaFX = true; });
   fetchurl = pkgs.fetchurl;
   stdenv = pkgs.stdenv;
   lib = pkgs.lib;
@@ -18,7 +14,7 @@ let
   libXxf86vm = pkgs.xorg.libXxf86vm;
   mesa        = pkgs.mesa;
   gtk3        = pkgs.gtk3;
-  # openjfx = (pkgs.openjfx.override { withWebKit = true; });
+  openjfx = (pkgs.openjfx.override { withWebKit = true; });
   xwininfo    = pkgs.xorg.xwininfo;
   xprop       = pkgs.xorg.xprop;
 in
@@ -35,7 +31,7 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-yPYoq8l/WuogiztmSYBHCUUYyL460eV11zCNGsU3U6I=";
   };
 
-  buildInputs = [ openjdk makeWrapper glib libXxf86vm mesa gtk3 xwininfo xprop openjfx];
+  buildInputs = [ openjdk makeWrapper glib libXxf86vm mesa gtk3 openjfx xwininfo xprop];
   sourceRoot = ".";
 
   installPhase = ''
@@ -51,8 +47,8 @@ stdenv.mkDerivation rec {
       --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED \
       --add-opens=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED \
       -jar $out/bin/runemate-client.jar" \
-    --set PATH "${xwininfo}/bin:${xprop}/bin:$PATH" \
-    --set LD_LIBRARY_PATH "${openjfx}/lib/javafx.web:${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:$LD_LIBRARY_PATH" 
+    --set LD_LIBRARY_PATH "${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:${openjfx}/lib:$LD_LIBRARY_PATH" \
+    --set PATH "${xwininfo}/bin:${xprop}/bin:$PATH"
   '';
 
   meta = with lib; {
