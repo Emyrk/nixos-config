@@ -4,8 +4,8 @@ let
   system = stdenv.system or stdenv.hostPlatform.system;
   # https://www.reddit.com/r/NixOS/comments/1c1lysh/need_help_building_javafx_projects_on_nixos/kz4ehal/
   openjfx = (pkgs.openjfx.override { withWebKit = true; });
-  openjdk = (pkgs.jdk23.override { 
-    enableJavaFX = true; 
+  openjdk = (pkgs.jetbrains.jdk.override { 
+    # enableJavaFX = true; 
     # openjfx_jdk = openjfx;
   });
   fetchurl = pkgs.fetchurl;
@@ -45,15 +45,14 @@ stdenv.mkDerivation rec {
   # Create a wrapper using makeWrapper that invokes the jar with OpenJDK 17
   makeWrapper ${openjdk}/bin/java $out/bin/runemate-client \
     --add-flags "\
-      -Djava.library.path=${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:${openjfx}/lib \
       --module-path ${openjfx}/lib --add-modules=javafx.controls,javafx.fxml,javafx.web \
       -Dprism.order=sw \
       --add-opens=javafx.graphics/com.sun.javafx.util=ALL-UNNAMED \
       --add-opens=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED \
       --add-opens=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED \
       -jar $out/bin/runemate-client.jar" \
-    --set LD_LIBRARY_PATH "${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:${openjfx}/lib:$LD_LIBRARY_PATH" \
-    --set PATH "${xwininfo}/bin:${xprop}/bin:$PATH"
+    --set PATH "${xwininfo}/bin:${xprop}/bin:$PATH" \
+    --set LD_LIBRARY_PATH "${openjfx}/lib/javafx.web:${libXxf86vm}/lib:${glib}/lib:${mesa}/lib:${gtk3}/lib:$LD_LIBRARY_PATH" 
   '';
 
   meta = with lib; {

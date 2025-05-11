@@ -295,15 +295,16 @@ in
         # { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; } # Installations with additional options. For the list of options, please refer to Zplug README.
       ];
     };
-    initExtraBeforeCompInit = ''
+    initContent = ''
       export PATH=$PATH:$HOME/.local/bin
+
+      ${builtins.readFile ./programs/zsh/.zshrc}
     '';
     # initExtraBeforeCompInit = ''
     #     # p10k instant prompt
     #     P10K_INSTANT_PROMPT="$XDG_CACHE_HOME/p10k-instant-prompt-''${(%):-%n}.zsh"
     #     [[ ! -r "$P10K_INSTANT_PROMPT" ]] || source "$P10K_INSTANT_PROMPT"
     #     '';
-    initExtra = builtins.readFile ./programs/zsh/.zshrc;
 
 
     plugins = [
@@ -321,15 +322,17 @@ in
   };
 
   programs.vscode = {
+    profiles.default = {
+      # To add new extensions, add them to the vscode-extensions.json file and
+      # then run `make update-vscode-extensions`.
+      extensions = (pkgs.vscode-utils.extensionsFromVscodeMarketplace vscodeExtensions) ++ [
+        # Terraform has a custom build script!
+        pkgs.vscode-extensions.hashicorp.terraform
+      ];
+      userSettings = vscodeSettings;
+      keybindings = vscodeKeybinds;
+    }
     enable = true;
-    # To add new extensions, add them to the vscode-extensions.json file and
-    # then run `make update-vscode-extensions`.
-    extensions = (pkgs.vscode-utils.extensionsFromVscodeMarketplace vscodeExtensions) ++ [
-      # Terraform has a custom build script!
-      pkgs.vscode-extensions.hashicorp.terraform
-    ];
-    userSettings = vscodeSettings;
-    keybindings = vscodeKeybinds;
   };
 
   # Add in binaries
