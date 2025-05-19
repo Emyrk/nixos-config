@@ -157,7 +157,7 @@ in
     supabase-cli
     gotestsum
     sqlite
-    go-migrate
+    # go-migrate # currently broken with certs
     meld
     vscode
     gnumake
