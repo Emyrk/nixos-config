@@ -143,6 +143,7 @@ in
     spotify
     ferium # curseforge
     prismlauncher #mc
+    parsec-bin
 
 
     # Programming
