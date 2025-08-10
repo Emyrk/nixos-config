@@ -43,6 +43,8 @@ in
 
   };
 
+  services.input-remapper.enable = true;
+
   # Useful for VS Code storing credentials.
   services.gnome.gnome-keyring.enable = true;
 
