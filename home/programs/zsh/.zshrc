@@ -14,6 +14,7 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 export CDR=$GOPATH/src/github.com/coder/coder
 export EM=$GOPATH/src/github.com/Emyrk
 export NAMESPACE=masley-dogfood
+export TW=$HOME/Games/umu/umu-default/drive_c/users/steamuser/AppData/Local/TurtleWoW/
 
 # Some node thing
 export NODE_OPTIONS=--max-old-space-size=8192\
