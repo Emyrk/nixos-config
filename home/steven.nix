@@ -144,6 +144,7 @@ in
     ferium # curseforge
     prismlauncher #mc
     parsec-bin
+    input-remapper # For razer products
 
 
     # Programming
