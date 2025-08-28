@@ -159,6 +159,7 @@ in
     supabase-cli
     gotestsum
     sqlite
+    lua
     # go-migrate # currently broken with certs
     meld
     vscode
