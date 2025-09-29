@@ -159,7 +159,6 @@ in
     supabase-cli
     gotestsum
     sqlite
-    lua
     # go-migrate # currently broken with certs
     meld
     vscode
@@ -205,7 +204,7 @@ in
     gcc
     shfmt
     pprof
-    libsForQt5.kcachegrind # callgrind
+    # libsForQt5.kcachegrind # callgrind
 
     # Cloud
     flyctl
