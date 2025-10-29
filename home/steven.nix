@@ -145,6 +145,7 @@ in
     prismlauncher #mc
     parsec-bin
     input-remapper # For razer products
+    parsec-bin
 
 
     # Programming
@@ -198,7 +199,8 @@ in
     protobuf # protoc
     protoc-gen-go
     protoc-gen-go-grpc
-    sqlc
+    # Until CGO_ENABLED=1 go install github.com/coder/sqlc/cmd/sqlc@aab4e865a51df0c43e1839f81a9d349b41d14f05
+    # sqlc
     dev-coder
     terraform
     gcc
