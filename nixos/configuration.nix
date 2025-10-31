@@ -80,6 +80,11 @@ in
     excludePackages = with pkgs; [
       xterm
     ];
+    xkb.layout = "us";
+    xkb.variant = "";
+  };
+
+  services = {
     # Enable the GNOME Desktop Environment.
     displayManager.gdm = {
       enable = true;
@@ -89,8 +94,6 @@ in
       wayland = false;
     };
     desktopManager.gnome.enable = true;
-    xkb.layout = "us";
-    xkb.variant = "";
   };
 
   # Enable CUPS to print documents.
