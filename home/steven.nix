@@ -54,6 +54,7 @@ in
         "dash-to-dock@micxgx.gmail.com"
         "Vitals@CoreCoding.com"
         "clipboard-indicator@tudmotu.com"
+        pkgs.gnomeExtensions.gtk4-desktop-icons-ng-ding.extensionUuid
       ];
     };
 
@@ -99,6 +100,7 @@ in
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.dash-to-dock
     gnomeExtensions.vitals
+    gnomeExtensions.gtk4-desktop-icons-ng-ding # Desktop icons
 
     # Productivity
     nixpkgs-fmt
