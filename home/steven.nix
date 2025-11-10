@@ -15,7 +15,7 @@ let
   # nix-vscode-extensions = pkgs.callPackage ../pkgs/nix-vscode-extensions.nix { };
 
   nodejs = pkgs.nodejs_20;
-  pnpm = pkgs.pnpm_9.override {
+  pnpm = pkgs.pnpm_10.override {
     inherit nodejs; # Ensure it points to the above nodejs version
   };
 in
