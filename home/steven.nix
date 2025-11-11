@@ -4,6 +4,7 @@ let
   protoc-gen-go-drpc = pkgs.callPackage ../pkgs/protoc-gen-go-drpc.nix { };
   # curseforge = pkgs.callPackage ../pkgs/curseforge.nix { };
   coder = pkgs.callPackage ../pkgs/coder.nix { };
+  supabase = pkgs.callPackage ../pkgs/supabase.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
   # runemate = pkgs.callPackage ../pkgs/runemate.nix { };
   # bank-tags-sync = pkgs.callPackage ../pkgs/bank-tags-sync.nix { };
@@ -117,6 +118,7 @@ in
     nixpkgs-fmt
     jetbrains-toolbox
     inetutils
+    supabase
     # https://github.com/NixOS/nixpkgs/issues/159267#issuecomment-1037372237
     # Work around #159267
     discord
@@ -159,7 +161,7 @@ in
     lsof
     kubectl
     gh
-    supabase-cli
+    #supabase-cli
     gotestsum
     sqlite
     # go-migrate # currently broken with certs
