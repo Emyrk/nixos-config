@@ -17,6 +17,7 @@ appimageTools.wrapType2 {
 
   # optional: use contents if you want to install icons/desktop from the AppImage
   # extraInstallCommands can tweak the generated desktop entry
+  # TODO: cmux does not have a desktop file yet. When it does, this script will probably need adjustments.
   extraInstallCommands = ''
     desktop_dir="$out/share/applications"
     if [ -d "$desktop_dir" ]; then
