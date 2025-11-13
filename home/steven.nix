@@ -156,6 +156,7 @@ in
 
     # Programming
     rustc
+    cargo
     code-cursor
     wireshark
     open-policy-agent
