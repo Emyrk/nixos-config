@@ -16,6 +16,8 @@ let
   vscodeKeybinds = builtins.fromJSON (builtins.readFile ./programs/vscode/keybindings.json);
   # nix-vscode-extensions = pkgs.callPackage ../pkgs/nix-vscode-extensions.nix { };
 
+  unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
+
   nodejs = pkgs.nodejs_20;
   pnpm = pkgs.pnpm_10.override {
     inherit nodejs; # Ensure it points to the above nodejs version
@@ -107,7 +109,7 @@ in
     # Productivity
     cmux
     nixpkgs-fmt
-    code-cursor
+    unstable.code-cursor
     obsidian
     gimp # image editor
     ncdu # disk util
@@ -155,9 +157,11 @@ in
 
 
     # Programming
+    pkg-config openssl # required for rust
     rustc
+    rust-analyzer
     cargo
-    code-cursor
+
     wireshark
     open-policy-agent
     spicedb-zed

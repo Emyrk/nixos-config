@@ -31,3 +31,6 @@ update:
 
 update-vscode-extensions:
 	deno run --allow-env --allow-run --allow-net --allow-read --allow-write --unstable --no-check ~/.local/bin/nix-vscode-extensions.ts --update
+
+# sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
+# sudo nix-channel --update
