@@ -1,12 +1,12 @@
 { lib, appimageTools, fetchurl }:
 
 let
-  pname = "cmux";
-  version = "0.5.1";
+  pname = "mux";
+  version = "0.8.1";
   name = "${pname}-${version}";
 
   src = fetchurl {
-    url = "https://github.com/coder/cmux/releases/download/v${version}/cmux-${version}-x86_64.AppImage";
+    url = "https://github.com/coder/mux/releases/download/v${version}/mux-${version}-x86_64.AppImage";
     hash = "sha256-nXfqBOxDRtkABS9eAH9EXg2mraauNraWE3tvWMGt24g=";
   };
 
@@ -17,7 +17,7 @@ appimageTools.wrapType2 {
 
   # optional: use contents if you want to install icons/desktop from the AppImage
   # extraInstallCommands can tweak the generated desktop entry
-  # TODO: cmux does not have a desktop file yet. When it does, this script will probably need adjustments.
+  # TODO: mux does not have a desktop file yet. When it does, this script will probably need adjustments.
   extraInstallCommands = ''
     desktop_dir="$out/share/applications"
     if [ -d "$desktop_dir" ]; then
@@ -33,8 +33,8 @@ appimageTools.wrapType2 {
 
   meta = {
     description = "AI agent multiplexer";
-    homepage = "https://github.com/coder/cmux";
-    downloadPage = "https://github.com/coder/cmux/releases";
+    homepage = "https://github.com/coder/mux";
+    downloadPage = "https://github.com/coder/mux/releases";
     license = lib.licenses.asl20;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
     maintainers = with lib.maintainers; [ ];

@@ -6,7 +6,7 @@ let
   coder = pkgs.callPackage ../pkgs/coder.nix { };
   supabase = pkgs.callPackage ../pkgs/supabase.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
-  cmux = pkgs.callPackage ../pkgs/cmux.nix { };
+  mux = pkgs.callPackage ../pkgs/mux.nix { };
   # runemate = pkgs.callPackage ../pkgs/runemate.nix { };
   # bank-tags-sync = pkgs.callPackage ../pkgs/bank-tags-sync.nix { };
 
@@ -107,7 +107,7 @@ in
     gnomeExtensions.gtk4-desktop-icons-ng-ding # Desktop icons
 
     # Productivity
-    cmux
+    mux
     nixpkgs-fmt
     unstable.code-cursor
     obsidian
@@ -138,7 +138,7 @@ in
     kubecolor
     kooha # Screencap
     vlc
-    sublime
+    unstable.sublime
     # coder
     zoom-us
     dconf-editor
