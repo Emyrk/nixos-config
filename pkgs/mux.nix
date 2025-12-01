@@ -7,7 +7,7 @@ let
 
   src = fetchurl {
     url = "https://github.com/coder/mux/releases/download/v${version}/mux-${version}-x86_64.AppImage";
-    hash = "sha256-nXfqBOxDRtkABS9eAH9EXg2mraauNraWE3tvWMGt24g=";
+    hash = "sha256-YDOYlCPlrw3kD7ynSybvQcg1PAwxvTut0KkBYyGwlnU=";
   };
 
   appimageContents = appimageTools.extractType2 { inherit name src; };
