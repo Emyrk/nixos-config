@@ -177,7 +177,7 @@ in
     vscode
     gnumake
     graphite-cli
-    go_1_24
+    unstable.go_1_24
     # git
     gotools
     gopls
