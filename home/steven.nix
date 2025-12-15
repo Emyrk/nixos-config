@@ -42,6 +42,8 @@ in
     # Imports some OS system themeing.
     ./programs/xfce/xfce.nix
     ./programs/bank-tags-sync/systemd.nix 
+    # https://shadow.tech/
+    (fetchGit { url = "https://github.com/vvvinceocam/shadow-nix"; ref = "update-shadow-channels"; } + "/import/home-manager.nix")
   ];
 
   # https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
@@ -359,5 +361,12 @@ in
     };
   };
 
-
+  # Shadow client for gaming :: https://shadow.tech/
+  programs.shadow-client = {
+    # Enabled by default when using import
+    # enable = true;
+    channel = "preprod";
+    forceDriver = "radeonsi";
+    enableDesktopLauncher = true;
+  };
 }
