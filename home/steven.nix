@@ -140,7 +140,7 @@ in
     kubecolor
     kooha # Screencap
     vlc
-    unstable.sublime
+    # unstable.sublime # No longer works?
     # coder
     zoom-us
     dconf-editor
@@ -163,6 +163,7 @@ in
     rustc
     rust-analyzer
     cargo
+    buf
 
     wireshark
     open-policy-agent
@@ -366,7 +367,7 @@ in
     # Enabled by default when using import
     # enable = true;
     channel = "preprod";
-    forceDriver = "radeonsi";
+    # forceDriver = "radeonsi";
     enableDesktopLauncher = true;
   };
 }
