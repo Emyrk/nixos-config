@@ -164,6 +164,7 @@ in
     rust-analyzer
     cargo
     buf
+    ffmpeg
 
     wireshark
     open-policy-agent
