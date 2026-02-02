@@ -174,6 +174,7 @@ in
     kubectl
     gh
     #supabase-cli
+    spicedb-zed
     gotestsum
     sqlite
     # go-migrate # currently broken with certs
