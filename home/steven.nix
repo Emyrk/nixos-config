@@ -7,6 +7,7 @@ let
   supabase = pkgs.callPackage ../pkgs/supabase.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
   mux = pkgs.callPackage ../pkgs/mux.nix { };
+  pencil = pkgs.callPackage ../pkgs/pencil.nix { };
   # runemate = pkgs.callPackage ../pkgs/runemate.nix { };
   # bank-tags-sync = pkgs.callPackage ../pkgs/bank-tags-sync.nix { };
 
@@ -110,6 +111,7 @@ in
 
     # Productivity
     mux
+    pencil
     nixpkgs-fmt
     unstable.code-cursor
     obsidian
