@@ -1,0 +1,42 @@
+#!/bin/sh
+set -eu
+
+usage() {
+  echo "Usage: mux-skill-add <name> <source-dir>"
+}
+
+if [ "$#" -ne 2 ]; then
+  usage
+  exit 2
+fi
+
+name="$1"
+src="$2"
+
+case "$name" in
+  ""|*/*|*".."*)
+    echo "Invalid skill name: '$name'"
+    echo "Skill name must not contain '/' or '..'"
+    exit 2
+    ;;
+esac
+
+if ! src_abs="$(realpath "$src")"; then
+  echo "Unable to resolve source directory: $src"
+  exit 1
+fi
+
+if [ ! -d "$src_abs" ]; then
+  echo "Source is not a directory: $src_abs"
+  exit 1
+fi
+
+if [ ! -f "$src_abs/SKILL.md" ]; then
+  echo "Expected SKILL.md in: $src_abs"
+  exit 1
+fi
+
+mkdir -p "$HOME/.mux/skills"
+ln -sfn "$src_abs" "$HOME/.mux/skills/$name"
+
+echo "Installed skill '$name' -> $HOME/.mux/skills/$name"

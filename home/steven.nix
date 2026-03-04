@@ -358,10 +358,16 @@ in
     enable = true;
   };
 
-  # Add in binaries
+  # Add in binaries and local Mux skills
   home.file = {
     ".local/bin/" = {
       source = ./bin;
+      recursive = true;
+    };
+
+    # Keep all repo-managed skills synced into ~/.mux/skills.
+    ".mux/skills/" = {
+      source = ./mux-skills;
       recursive = true;
     };
   };
