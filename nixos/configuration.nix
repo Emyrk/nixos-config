@@ -209,10 +209,13 @@ in
     enable = true;
   };
 
+  programs.gpu-screen-recorder.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs;
     [
+      gpu-screen-recorder-gtk # GUI app
+
       claude-code
       mullvad
       mullvad-vpn
