@@ -99,6 +99,12 @@ in
       shift-click-action = "minimize";
       shift-middle-click-action = "launch";
       show-apps-at-top = false;
+      dock-fixed = false;
+      autohide = true;             # enables auto-hide
+      intellihide = false;         # disable smart hiding (optional, but cleaner)
+      require-pressure-to-show = false; # optional (edge pressure behavior)
+      show-delay = 0.0;            # show immediately
+      hide-delay = 0.2;            # small delay before hiding
     };
   };
 
