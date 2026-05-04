@@ -7,6 +7,7 @@ let
   supabase = pkgs.callPackage ../pkgs/supabase.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
   mux = pkgs.callPackage ../pkgs/mux.nix { };
+  jetbrains-toolbox = pkgs.callPackage ../pkgs/jetbrains-toolbox.nix { };
   pencil = pkgs.callPackage ../pkgs/pencil.nix { };
   # runemate = pkgs.callPackage ../pkgs/runemate.nix { };
   # bank-tags-sync = pkgs.callPackage ../pkgs/bank-tags-sync.nix { };
