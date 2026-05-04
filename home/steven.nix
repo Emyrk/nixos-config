@@ -19,9 +19,9 @@ let
 
   unstable = import <nixos-unstable> { config = { allowUnfree = true; }; };
 
-  nodejs = pkgs.nodejs_20;
+  nodejs = pkgs.nodejs_22;
   pnpm = pkgs.pnpm_10.override {
-    inherit nodejs; # Ensure it points to the above nodejs version
+    inherit nodejs;
   };
 in
 {
