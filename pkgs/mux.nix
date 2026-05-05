@@ -2,12 +2,12 @@
 
 let
   pname = "mux";
-  version = "0.20.1";
+  version = "0.23.2";
   name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://github.com/coder/mux/releases/download/v${version}/mux-${version}-x86_64.AppImage";
-    hash = "sha256-61OI4xRKa2PN5ixhZa9xMqPCsFJ7dwThLHF+wnzI9Ck=";
+    hash = "sha256-ggc0jchdiDkjDyrdyxiUo1hnV4qFE65ki5YWNh/J0mw=";
   };
 
   appimageContents = appimageTools.extractType2 { inherit name src; };
