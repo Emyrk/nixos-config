@@ -377,6 +377,9 @@ in
       source = ./mux-skills;
       recursive = true;
     };
+
+    # Global agent instructions (appended to every Mux system prompt).
+    ".mux/AGENTS.md".source = ./mux-AGENTS.md;
   };
 
   # Shadow client for gaming :: https://shadow.tech/
