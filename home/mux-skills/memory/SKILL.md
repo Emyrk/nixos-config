@@ -1,31 +1,50 @@
 ---
 name: memory
-description: Persistent memory policy — when to store, what to tag, when to recall. Backed by the `memory_*` MCP tools.
+description: Persistent memory policy — when to store, query, and consolidate knowledge. Backed by the Honcho MCP tools.
 ---
 
 # Memory — how to use it
 
-You have a persistent memory store backed by the `memory_*` MCP tools (see the
-`memory` server in `~/.mux/mcp.jsonc`). The store survives across workspaces,
+You have persistent memory backed by the **Honcho** MCP tools (see the
+`honcho` server in `~/.mux/mcp.jsonc`). Memory survives across workspaces,
 machines, and assistants. Treat it as **the single source of truth** for things
 the user has told you, decisions you've made together, and lessons learned.
 
-This skill defines the **policy**: when to write, what to tag, when to read.
-The tools themselves are obvious from their schemas — this file is here so we
-get *consistent* behavior every session.
+Honcho is smarter than a key-value store. It auto-derives insights from
+conversations, maintains a user model, and supports semantic search. This skill
+defines the **policy** for consistent behavior — when to write, when to query,
+when to consolidate.
+
+## Core concepts
+
+| Concept | What it is |
+|---|---|
+| **Peer** | A participant — human (`steven`) or agent (`mux`). |
+| **Conclusion** | A fact or observation. Directional: observer → target (e.g. `mux`'s conclusion about `steven`). |
+| **Peer card** | A compact list of biographical facts about a peer. Updated manually or via dreaming. |
+| **Session** | A conversation thread. Peers join sessions; messages are recorded per-session. |
+| **Dreaming** | Background memory consolidation — synthesizes raw conclusions into higher-level insights and updates peer cards. |
+
+## Peers in this workspace
+
+- **`steven`** — Steven Masley, the human user behind all sessions.
+- **`mux`** — the agent (you). Observer of Steven's conclusions.
 
 ## TL;DR (do this on every relevant turn)
 
 1. **Before answering "how do I X" or "what is Y"-style questions**, call
-   `memory_retrieve_memory` with a natural-language query reflecting the user's
-   ask. If anything comes back, prefer it over your assumptions.
+   `honcho_query_conclusions` or `honcho_chat` with a natural-language query.
+   If anything comes back, prefer it over your assumptions.
 2. **When the user states a fact, preference, decision, or "lesson"**, call
-   `memory_store_memory`. Match the rules in *When to store* below.
-3. **Always tag** stored memories using the vocabulary in *Tags* below.
-4. **Don't dump** raw conversation. Write one short, self-contained sentence
-   per memory so semantic search hits it.
+   `honcho_create_conclusions` with `peer_id: "mux"` and
+   `target_peer_id: "steven"`. Match the rules in *When to store* below.
+3. **Don't dump** raw conversation. Write one short, self-contained sentence
+   per conclusion so semantic search hits it.
+4. **Let auto-derivation do its job** — Honcho learns from conversations
+   automatically. Only create conclusions manually for things that are
+   important enough to guarantee they're captured.
 
-## When to store
+## When to store (manually create conclusions)
 
 Store when **at least one** is true:
 
@@ -45,190 +64,182 @@ Store when **at least one** is true:
 Do **not** store:
 
 - Things the user said in passing without indicating they're durable.
+  Auto-derivation may pick these up if they're meaningful.
 - Code snippets longer than a sentence. Use file/repo edits instead.
-- Anything that's true only "right now in this conversation". The store is for
-  things that should outlive the workspace.
-- Duplicates. Before storing a new memory on a familiar topic, briefly
-  `memory_retrieve_memory` first; if a near-duplicate exists, prefer
-  *updating* it (delete old, store new) over piling on.
+- Anything that's true only "right now in this conversation". Conclusions
+  should outlive the workspace.
+- Duplicates. Before storing, briefly `honcho_query_conclusions` first; if a
+  near-duplicate exists, prefer *replacing* it (delete old, create new) over
+  piling on.
 
-## When to retrieve
+## When to query
 
-- **Always retrieve** before answering questions of the form:
+- **Always query** before answering questions of the form:
   - "How do I…" / "What's the way to…" — there may be a project-specific or
-    user-preference answer in memory that overrides general best practice.
-  - "What is X?" / "Where does Y live?" / "What's my API key for…" — the
-    answer may be a fact you've been told.
+    user-preference answer that overrides general best practice.
+  - "What is X?" / "Where does Y live?" — the answer may be a stored fact.
   - "Why do we…" / "Why did we choose…" — likely a stored decision with
     rationale.
-- **Always retrieve** the first time a new workspace mentions a project name
-  or hostname you don't yet have context for (e.g. user mentions
-  `home.steven.masley.com` → you should pull what's known about it).
-- **Do not retrieve** on:
+- **Always query** the first time a new workspace mentions a project name
+  or hostname you don't yet have context for.
+- **Do not query** on:
   - Generic technical questions with no project/personal angle.
   - Chit-chat, greetings, or pure code-formatting requests.
   - Every single turn — that's noisy and wasteful.
 
-Prefer `memory_retrieve_memory` (semantic) for free-form queries; use
-`memory_search_by_tag` when you want a strict category (e.g. "everything I
-know about deployments" → tag `deploy`).
+### Which query tool to use
 
-## Memory content format
+| Tool | When to use |
+|---|---|
+| `honcho_chat` | Natural-language questions — "what does Steven prefer for error handling?" Honcho reasons over all knowledge and returns a synthesized answer. |
+| `honcho_query_conclusions` | Targeted semantic search — returns ranked matching conclusions. Best when you want raw facts, not interpretation. |
+| `honcho_get_peer_context` | Full picture — combines conclusions + peer card. Use at session start or when you need broad context. |
+| `honcho_get_peer_card` | Quick bio summary. Use for a fast refresher on who someone is. |
+
+## Conclusion content format
 
 Write **one self-contained sentence**, in third person, declarative, including
 enough context that semantic search can find it.
 
 Bad: `"port 8000"`
-Good: `"The MCP Memory Service add-on listens on LAN port 8000 at http://192.168.1.123:8000/."`
+Good: `"The Honcho MCP is hosted at https://mcp.honcho.dev with Bearer token auth."`
 
 Bad: `"don't use light option"`
 Good: `"On Debian, install nginx-full (not nginx-light) when sub_filter is needed — nginx-light omits ngx_http_sub_module so sub_filter is silently ignored."`
 
-If a memory becomes obsolete (a fact changed, a decision was reversed),
-`memory_delete_memory` it by `content_hash` and store the replacement. Don't
-leave contradictory entries.
+If a conclusion becomes obsolete (a fact changed, a decision was reversed),
+`honcho_delete_conclusion` it by ID and create the replacement. Don't leave
+contradictory entries.
 
-## Tags (vocabulary)
+## Peer card maintenance
 
-Tags are **hierarchical**: use both the top category and the specific
-sub-tag on every memory so broad and narrow searches both work.
+The peer card is a compact list of biographical facts. Update it when:
 
-| Top tag | Use for | Example sub-tags |
-|---|---|---|
-| `personal` | Anything about the user's life | `personal/relationships`, `personal/travel`, `personal/health`, `personal/dates`, `personal/finance` |
-| `prefs` | The user's preferences (durable opinions) | `prefs/code`, `prefs/tone`, `prefs/ops`, `prefs/tools` |
-| `deploy` | Infrastructure / deployment facts | `deploy/home-assistant`, `deploy/mcp-memory`, `deploy/cloudflare`, `deploy/networking` |
-| `decision` | Choices made + rationale | `decision/architecture`, `decision/library`, `decision/process` |
-| `lesson` | Gotchas to avoid repeating | `lesson/ingress`, `lesson/docker`, `lesson/api`, `lesson/git` |
-| `project/<name>` | Project-specific facts (slug after `/`) | `project/ha-addon-mcp-memory`, `project/mux` |
+- A significant new fact about the user is learned (new project, role change,
+  new preference).
+- An existing fact becomes wrong.
+- After a dream consolidation reveals card-worthy insights.
 
-Rules:
+Use `honcho_set_peer_card` — it **overwrites** the entire card, so always
+`honcho_get_peer_card` first, modify the list, then set it back.
 
-- **Always include the top tag** AND **at least one sub-tag**.
-- Add a `project/<slug>` tag whenever the memory pertains to a specific repo
-  or product, in addition to the topical tag(s).
-- Keep tags lowercase, kebab-case after the slash.
-- Don't invent new top-tags casually. If something doesn't fit, file under the
-  nearest existing top-tag and reach for a new sub-tag instead. If you truly
-  need a new top-tag, ask the user first.
+## Dreaming (memory consolidation)
 
-## Memory types
+`honcho_schedule_dream` runs background consolidation. Schedule a dream when:
 
-Use the `memory_type` parameter on `memory_store_memory`. Pick the closest
-match — the values are informational only (search doesn't use them).
+- A long or dense conversation just finished.
+- You notice many low-level conclusions that could be synthesized into
+  higher-level insights.
+- The user explicitly asks you to consolidate or "think about what you know."
 
-- `fact` — something objectively true (URL, hostname, version pinning).
-- `preference` — a user opinion or convention.
-- `decision` — a choice + the reasoning.
-- `lesson` — a gotcha or learned constraint.
-- `personal` — anything in the `personal/*` tag space.
+Don't schedule dreams on every turn — they're a periodic maintenance task.
+Check `honcho_get_queue_status` if you want to verify a dream completed.
+
+## Sessions
+
+Sessions track conversation threads. For most interactions, you don't need to
+manage sessions explicitly — Honcho handles it. Create sessions explicitly
+when:
+
+- You want to scope conclusions to a particular conversation.
+- You're tracking a multi-turn project discussion that should be grouped.
 
 ## Privacy & sensitivity
 
-- The store contains personal information. Never echo memories into
+- Memory contains personal information. Never echo conclusions into
   sub-agent prompts, web search queries, or external tool calls unless the
   user explicitly asks.
-- API keys / tokens stored in memory should be **referenced by location**
-  (e.g. "API key is at `/share/mcp-memory/api_key` on the HAOS box"), not
-  pasted verbatim into a memory. If the user does want a secret stored,
-  add tag `personal/secret` so retrieval is intentional.
+- API keys / tokens should be **referenced by location** (e.g. "API key is
+  in 1Password under 'Honcho'"), not stored as conclusions. If the user does
+  want a secret stored, confirm intent first.
 
-## Quick examples (copy-paste-ready calls)
+## Quick examples
 
-Storing a deployment fact:
+Storing a conclusion:
 
 ```jsonc
-memory_store_memory({
-  content: "The MCP Memory Service add-on is installed on HAOS at slug c9fd3759_mcp_memory; its LAN endpoint is http://192.168.1.123:8000/ and MCP is at /mcp.",
-  memory_type: "fact",
-  tags: ["deploy", "deploy/mcp-memory", "deploy/home-assistant", "project/ha-addon-mcp-memory"]
+honcho_create_conclusions({
+  peer_id: "mux",
+  target_peer_id: "steven",
+  conclusions: [
+    "Steven prefers TypeScript with strict mode and avoids `any`; for new TS projects, prefer Vitest over Jest."
+  ]
 })
 ```
 
-Storing a preference:
+Querying before answering a question:
 
 ```jsonc
-memory_store_memory({
-  content: "Steven prefers TypeScript with strict mode and avoids `any`; for new TS projects, prefer Vitest over Jest.",
-  memory_type: "preference",
-  tags: ["prefs", "prefs/code"]
+honcho_query_conclusions({
+  peer_id: "mux",
+  query: "how does Steven deploy HA add-ons",
+  target_peer_id: "steven",
+  top_k: 5
 })
 ```
 
-Storing a lesson:
+Asking a natural-language question:
 
 ```jsonc
-memory_store_memory({
-  content: "nginx-light on Debian omits ngx_http_sub_module, so sub_filter directives are silently ignored. Use nginx-full when sub_filter is needed; assert at build time with `nginx -V | grep http_sub_module`.",
-  memory_type: "lesson",
-  tags: ["lesson", "lesson/docker", "deploy/networking"]
+honcho_chat({
+  peer_id: "mux",
+  query: "What are Steven's design preferences for Chronicle?",
+  reasoning_level: "medium"
 })
 ```
 
-Retrieving before answering a "how do I" question:
+Getting full context at session start:
 
 ```jsonc
-memory_retrieve_memory({ query: "how do I deploy a custom HA add-on", limit: 5 })
+honcho_get_peer_context({
+  peer_id: "mux",
+  target_peer_id: "steven"
+})
 ```
 
-Tag-scoped recall ("what do you know about my deployments"):
+Deleting an obsolete conclusion and replacing it:
 
 ```jsonc
-memory_search_by_tag({ tags: ["deploy"], operation: "OR" })
+honcho_delete_conclusion({
+  peer_id: "mux",
+  target_peer_id: "steven",
+  conclusion_id: "<id-from-query>"
+})
+honcho_create_conclusions({
+  peer_id: "mux",
+  target_peer_id: "steven",
+  conclusions: ["The corrected fact goes here."]
+})
 ```
 
-Time-scoped recall ("what did we work on last week"):
+## Deployment
 
-```jsonc
-memory_recall_memory({ query: "anything from last week about home assistant", n_results: 10 })
-```
-
-## Deployments (how the memory MCP is reached)
-
-The memory MCP server lives in a Home Assistant add-on on the HAOS box at
-`192.168.1.123`. Reachability depends on where mux is running.
-
-### Windows workstation on LAN (current default)
+Honcho is hosted — no self-hosted infrastructure to manage.
 
 `~/.mux/mcp.jsonc`:
 
 ```jsonc
-"memory": {
-  "transport": "http",
-  "url": "http://192.168.1.123:8000/mcp",
-  "headers": { "X-API-Key": "<key-from-/share/mcp-memory/api_key>" }
+{
+  "servers": {
+    "honcho": {
+      "transport": "http",
+      "url": "https://mcp.honcho.dev",
+      "headers": {
+        "Authorization": "Bearer <key>",
+        "X-Honcho-User-Name": "Steven"
+      }
+    }
+  }
 }
 ```
-
-### Laptop on home Wi-Fi
-
-Same config as above — the LAN IP is reachable.
-
-### Laptop off-network / any machine on the internet
-
-Requires the Cloudflared HA add-on with a tunnel routing
-`https://memory.<your-domain>/` → `http://homeassistant.local:8000/`.
-
-```jsonc
-"memory": {
-  "transport": "http",
-  "url": "https://memory.<your-domain>/mcp",
-  "headers": { "X-API-Key": "<key>" }
-}
-```
-
-### Claude Desktop / Claude Code
-
-Same endpoint, different config file (`claude_desktop_config.json`). Claude
-Desktop also supports HTTP transports for MCP servers as of late 2025.
 
 ## When the user invokes `/memory`
 
-When the user runs `/memory <prompt>`, the prompt is usually a *request to
-recall something*. Default behavior:
+When the user runs `/memory <prompt>`, default behavior:
 
-1. Run `memory_retrieve_memory` with the user's prompt verbatim.
-2. If they explicitly ask to forget something, list candidates from
-   `memory_retrieve_memory` and confirm before deleting.
-3. If they explicitly ask to remember something, store it with appropriate
-   tags + type per this skill.
+1. Run `honcho_query_conclusions` with the user's prompt verbatim
+   (`peer_id: "mux"`, `target_peer_id: "steven"`).
+2. If they explicitly ask to forget something, query for candidates,
+   show them, and confirm before deleting with `honcho_delete_conclusion`.
+3. If they explicitly ask to remember something, create a conclusion per
+   this skill's policy.
