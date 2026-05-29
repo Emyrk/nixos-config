@@ -21,9 +21,16 @@ pkgs.writeShellApplication {
     log() { printf '[my-agents] %s\n' "$*"; }
 
     # 1. Clone if missing. If present and clean, fast-forward pull.
+    # All git operations are non-fatal: home-manager activation must not
+    # depend on network or SSH availability. If the checkout is absent
+    # after a failed clone, skip the symlink phase and exit cleanly.
     if [ ! -d "$DEST/.git" ]; then
       log "cloning $REPO_URL to $DEST"
-      git clone --quiet "$REPO_URL" "$DEST"
+      if ! git clone --quiet "$REPO_URL" "$DEST"; then
+        log "clone failed; SSH agent may not be available in this context"
+        log "run 'my-agents-sync' from an interactive shell, or git clone $REPO_URL $DEST manually"
+        exit 0
+      fi
     else
       log "fetching origin/main in $DEST"
       if ! git -C "$DEST" fetch --quiet origin main; then
@@ -35,6 +42,13 @@ pkgs.writeShellApplication {
       else
         log "$DEST has local changes or diverges from origin/main; not pulling"
       fi
+    fi
+
+    # Defense in depth: if we somehow have $DEST without expected files,
+    # skip the symlink phase rather than create dangling links.
+    if [ ! -f "$DEST/AGENTS.md" ]; then
+      log "no $DEST/AGENTS.md; skipping symlinks"
+      exit 0
     fi
 
     link() {
