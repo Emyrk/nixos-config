@@ -286,7 +286,7 @@ in
     # Use the specified ssh key for github
     "github.com" = {
       hostname = "github.com";
-      identityfile = " ~/.ssh/github";
+      identityfile = "~/.ssh/github";
     };
   };
 
