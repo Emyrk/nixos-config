@@ -44,6 +44,9 @@ in
     # Imports some OS system themeing.
     ./programs/xfce/xfce.nix
     ./programs/bank-tags-sync/systemd.nix 
+    # Clones Emyrk/my-agent to ~/agent and symlinks it into ~/.mux,
+    # ~/.coder, and ~/.local/bin on every activation.
+    ./my-agents.nix
     # https://shadow.tech/
     (fetchGit { url = "https://github.com/vvvinceocam/shadow-nix"; ref = "update-shadow-channels"; } + "/import/home-manager.nix")
   ];
@@ -283,7 +286,7 @@ in
     # Use the specified ssh key for github
     "github.com" = {
       hostname = "github.com";
-      identityfile = " ~/.ssh/github";
+      identityfile = "~/.ssh/github";
     };
   };
 
@@ -372,14 +375,13 @@ in
       recursive = true;
     };
 
-    # Keep all repo-managed skills synced into ~/.mux/skills.
-    ".mux/skills/" = {
-      source = ./mux-skills;
+    # The my-agent skills tree is owned by ./my-agents.nix, which
+    # clones the repo and symlinks ~/.mux/skills/<name> per skill.
+    # Only runtime-owned siblings live here.
+    ".mux/skills/memory" = {
+      source = ./mux-skills/memory;
       recursive = true;
     };
-
-    # Global agent instructions (appended to every Mux system prompt).
-    ".mux/AGENTS.md".source = ./mux-AGENTS.md;
   };
 
   # Shadow client for gaming :: https://shadow.tech/
