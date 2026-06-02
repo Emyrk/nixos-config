@@ -212,9 +212,9 @@ in
     curl
     # Node
     nodejs
-    nodejs.pkgs.typescript-language-server
-    nodejs.pkgs.typescript
-    nodejs.pkgs.prettier
+    typescript-language-server
+    typescript
+    prettier
     pnpm
 
     # nodejs-18_x

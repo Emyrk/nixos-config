@@ -86,13 +86,7 @@ in
 
   services = {
     # Enable the GNOME Desktop Environment.
-    displayManager.gdm = {
-      enable = true;
-      # Wayland breaks discord share screen. Just use x11 for now.
-      # :taco: to @Deansheather for the https://github.com/Vencord/Vesktop reccomendation
-      # TODO: Try out Vencord, and maybe switch back to wayland.
-      wayland = false;
-    };
+    displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
   };
 
@@ -241,13 +235,11 @@ in
       zenmonitor
       lm_sensors
 
-      # This has to be done outside home manager, otherwise there is some file conflict.
-      # "open-policy-agent" "terraform-and-hcl" "antlr-v4" "envfile" "gitlink" "github-copilot"
-      (jetbrains.plugins.addPlugins jetbrains.goland [ "nixidea"])
+      # JetBrains — addPlugins now requires derivations, not string IDs.
+      # Install plugins via JetBrains Toolbox or the IDE plugin manager instead.
       jetbrains.goland
-      (jetbrains.plugins.addPlugins jetbrains.datagrip [ ]) # "github-copilot"
       jetbrains.datagrip
-      jetbrains.idea-community
+      jetbrains.idea-oss
 
       # https://github.com/AvaloniaUI/Avalonia/issues/3020
       xorg.libX11 # for linking dynamic rendering libs

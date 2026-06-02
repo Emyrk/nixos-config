@@ -54,8 +54,6 @@
   # TODO: Only for desktop
   hardware.graphics.extraPackages = with pkgs; [
     rocmPackages.clr.icd
-    amdvlk
-    driversi686Linux.amdvlk
   ];
 
   # ----
