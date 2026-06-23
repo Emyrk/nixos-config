@@ -168,7 +168,7 @@ in
     parsec-bin
     input-remapper # For razer products
     parsec-bin
-
+    r2modman
 
     # Programming
     pkg-config openssl # required for rust
