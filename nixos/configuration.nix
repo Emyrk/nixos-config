@@ -339,7 +339,14 @@ in
   ];
 
 
-  hardware.openrazer.enable = true;
+  hardware.openrazer = {
+    enable = true;
+    batteryNotifier = {
+      enable = true;
+      percentage = 10;
+      frequency = 1800;
+    };
+  };
 
   # services.syncthing = {
   #   enable = true;
