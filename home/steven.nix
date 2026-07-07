@@ -171,6 +171,7 @@ in
     r2modman
 
     # Programming
+    claude-code
     pkg-config openssl # required for rust
     rustc
     rust-analyzer
