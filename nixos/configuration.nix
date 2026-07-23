@@ -389,6 +389,21 @@ in
   };
   hardware.graphics.enable32Bit = true; # Enables support for 32bit libs that steam uses
 
+  # Apply updates from the configured flake every night. The machine-specific
+  # flake output is set in flake.nix.
+  system.autoUpgrade = {
+    enable = true;
+    dates = "02:00";
+    randomizedDelaySec = "0";
+    persistent = true;
+    allowReboot = false;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--print-build-logs"
+    ];
+  };
+
   nix = {
     package = pkgs.nixVersions.stable;
     extraOptions = "experimental-features = nix-command flakes";
