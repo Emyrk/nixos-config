@@ -33,6 +33,7 @@
             nix-index-database.nixosModules.nix-index
             home-manager.nixosModules.home-manager
             {
+              system.autoUpgrade.flake = "path:/home/steven/nixos-config#system76";
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.steven = import ./home/steven.nix;
@@ -50,6 +51,7 @@
               nix-index-database.nixosModules.nix-index
               home-manager.nixosModules.home-manager
               {
+                system.autoUpgrade.flake = "path:/home/steven/nixos-config#desktop-amd64";
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
                 home-manager.users.steven = import ./home/steven.nix;
