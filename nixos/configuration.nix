@@ -392,7 +392,7 @@ in
   # Apply updates from the configured flake every night. The machine-specific
   # flake output is set in flake.nix.
   system.autoUpgrade = {
-    enable = true;
+    enable = false;
     dates = "02:00";
     randomizedDelaySec = "0";
     persistent = true;
