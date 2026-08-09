@@ -171,6 +171,7 @@ in
     r2modman
 
     # Programming
+    railway
     claude-code
     pkg-config openssl # required for rust
     rustc
