@@ -66,6 +66,7 @@ in
         "Vitals@CoreCoding.com"
         "clipboard-indicator@tudmotu.com"
         pkgs.gnomeExtensions.gtk4-desktop-icons-ng-ding.extensionUuid
+        "appindicatorsupport@rgcjonas.gmail.com"
       ];
     };
 
@@ -118,6 +119,7 @@ in
     gnomeExtensions.dash-to-dock
     gnomeExtensions.vitals
     gnomeExtensions.gtk4-desktop-icons-ng-ding # Desktop icons
+    gnomeExtensions.appindicator # System tray icons (Discord, Slack, etc.)
 
     # Productivity
     mux
