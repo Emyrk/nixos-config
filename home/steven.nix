@@ -86,7 +86,8 @@ in
     "org/gnome/shell/extensions/dash-to-dock" = {
       apply-custom-theme = true;
       background-opacity = 0.8;
-      click-action = "skip";
+      # Clicking a running app should raise or cycle its windows.
+      click-action = "cycle-windows";
       custom-theme-shrink = false;
       dash-max-icon-size = 39;
       dock-position = "LEFT";
