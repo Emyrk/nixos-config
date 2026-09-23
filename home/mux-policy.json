@@ -1,0 +1,8 @@
+{
+  "policy_format_version": "0.1",
+  "provider_access": [
+    {
+      "id": "openai"
+    }
+  ]
+}

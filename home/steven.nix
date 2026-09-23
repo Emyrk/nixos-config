@@ -33,6 +33,9 @@ in
     homeDirectory = "/home/steven";
   };
 
+  # Prevent Mux from selecting providers that are not explicitly allowed.
+  home.sessionVariables.MUX_POLICY_FILE = "/home/steven/.mux/policy.json";
+
   programs.home-manager.enable = true;
   # services.syncthing = {
   #   tray = {
@@ -379,6 +382,8 @@ in
       source = ./bin;
       recursive = true;
     };
+
+    ".mux/policy.json".source = ./mux-policy.json;
 
     # The my-agent skills tree is owned by ./my-agents.nix, which
     # clones the repo and symlinks ~/.mux/skills/<name> per skill.
