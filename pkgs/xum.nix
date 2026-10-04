@@ -1,13 +1,13 @@
 { lib, appimageTools, fetchurl }:
 
 let
-  pname = "mux";
-  version = "0.28.1";
+  pname = "xum";
+  version = "0.30.0";
   name = "${pname}-${version}";
 
   src = fetchurl {
-    url = "https://github.com/coder/mux/releases/download/v${version}/mux-${version}-x86_64.AppImage";
-    hash = "sha256-WXPLQTQSVHUfyA2b58knim6d40fJwMR5jM5LWMCcBBw=";
+    url = "https://github.com/coder/xum/releases/download/v${version}/xum-${version}-x86_64-linux.AppImage";
+    hash = "sha256-OOr5EXxPAm15oDyICBaLihgeYO+QivQE0w6ZbtoyvHc=";
   };
 
   appimageContents = appimageTools.extractType2 { inherit name src; };
@@ -17,7 +17,7 @@ appimageTools.wrapType2 {
 
   # optional: use contents if you want to install icons/desktop from the AppImage
   # extraInstallCommands can tweak the generated desktop entry
-  # TODO: mux does not have a desktop file yet. When it does, this script will probably need adjustments.
+  # TODO: xum does not have a desktop file yet. When it does, this script will probably need adjustments.
   extraInstallCommands = ''
     desktop_dir="$out/share/applications"
     if [ -d "$desktop_dir" ]; then
@@ -32,10 +32,10 @@ appimageTools.wrapType2 {
   '';
 
   meta = {
-    description = "AI agent multiplexer";
-    homepage = "https://github.com/coder/mux";
-    downloadPage = "https://github.com/coder/mux/releases";
-    license = lib.licenses.asl20;
+    description = "Coding agent multiplexer";
+    homepage = "https://github.com/coder/xum";
+    downloadPage = "https://github.com/coder/xum/releases";
+    license = lib.licenses.agpl3Only;
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
     maintainers = with lib.maintainers; [ ];
     platforms = [ "x86_64-linux" ];

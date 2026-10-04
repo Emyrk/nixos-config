@@ -6,7 +6,7 @@ let
   coder = pkgs.callPackage ../pkgs/coder.nix { };
   supabase = pkgs.callPackage ../pkgs/supabase.nix { };
   dev-coder = pkgs.callPackage ../pkgs/dev-coder.nix { };
-  mux = pkgs.callPackage ../pkgs/mux.nix { };
+  xum = pkgs.callPackage ../pkgs/xum.nix { };
   jetbrains-toolbox = pkgs.callPackage ../pkgs/jetbrains-toolbox.nix { };
   pencil = pkgs.callPackage ../pkgs/pencil.nix { };
   # runemate = pkgs.callPackage ../pkgs/runemate.nix { };
@@ -33,7 +33,7 @@ in
     homeDirectory = "/home/steven";
   };
 
-  # Prevent Mux from selecting providers that are not explicitly allowed.
+  # Prevent Xum from selecting providers that are not explicitly allowed.
   home.sessionVariables.MUX_POLICY_FILE = "/home/steven/.mux/policy.json";
 
   programs.home-manager.enable = true;
@@ -126,7 +126,7 @@ in
     gnomeExtensions.appindicator # System tray icons (Discord, Slack, etc.)
 
     # Productivity
-    mux
+    xum
     pencil
     nixpkgs-fmt
     unstable.code-cursor
