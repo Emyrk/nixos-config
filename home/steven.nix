@@ -247,6 +247,7 @@ in
 
     # Cloud
     flyctl
+    google-cloud-sdk
     google-cloud-sql-proxy
 
     # Required
