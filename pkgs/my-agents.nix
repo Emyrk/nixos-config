@@ -64,10 +64,17 @@ pkgs.writeShellApplication {
       runtime_dir="$HOME/.$runtime"
       mkdir -p "$runtime_dir/skills"
       link "$DEST/AGENTS.md" "$runtime_dir/AGENTS.md"
-      for skill in "$DEST/agent/skills"/*; do
-        [ -d "$skill" ] || continue
-        link "$skill" "$runtime_dir/skills/$(basename "$skill")"
-      done
+      # setup.sh on non-NixOS hosts may expose the whole skills directory as a
+      # symlink. Do not create per-skill links through that symlink, which would
+      # place self-referential links inside the source checkout.
+      if [ "$(readlink -f "$runtime_dir/skills")" = "$(readlink -f "$DEST/agent/skills")" ]; then
+        log "skip per-skill links for $runtime: skills root already resolves to source"
+      else
+        for skill in "$DEST/agent/skills"/*; do
+          [ -d "$skill" ] || continue
+          link "$skill" "$runtime_dir/skills/$(basename "$skill")"
+        done
+      fi
     done
 
     # 3. ~/agent points at $DEST. If MY_AGENT_DEST overrides the
