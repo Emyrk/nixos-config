@@ -178,6 +178,7 @@ in
 
     # Programming
     railway
+    stripe-cli
     claude-code
     pkg-config openssl # required for rust
     rustc
