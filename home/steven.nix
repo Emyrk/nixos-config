@@ -69,7 +69,7 @@ in
         "Vitals@CoreCoding.com"
         "clipboard-indicator@tudmotu.com"
         pkgs.gnomeExtensions.gtk4-desktop-icons-ng-ding.extensionUuid
-        "appindicatorsupport@rgcjonas.gmail.com"
+        pkgs.gnomeExtensions.appindicator.extensionUuid
       ];
     };
 
