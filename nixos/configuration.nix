@@ -290,7 +290,10 @@ in
   ];
 
   programs.dconf.enable = true;
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    extraSetFlags = [ "--accept-dns=false" ];
+  };
 
   # TODO: Thunar is stuck in light theme, so ignoring it for now.
   # services.gvfs.enable = true; # Mount, trash, and other functionalities
