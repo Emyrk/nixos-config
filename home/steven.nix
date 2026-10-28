@@ -9,6 +9,14 @@ let
   xum = pkgs.callPackage ../pkgs/xum.nix { };
   jetbrains-toolbox = pkgs.callPackage ../pkgs/jetbrains-toolbox.nix { };
   pencil = pkgs.callPackage ../pkgs/pencil.nix { };
+  zoom-x11 = pkgs.symlinkJoin {
+    name = "zoom-x11";
+    paths = [ pkgs.zoom-us ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/zoom --set QT_QPA_PLATFORM xcb
+    '';
+  };
   # runemate = pkgs.callPackage ../pkgs/runemate.nix { };
   # bank-tags-sync = pkgs.callPackage ../pkgs/bank-tags-sync.nix { };
 
@@ -35,6 +43,21 @@ in
 
   # Prevent Xum from selecting providers that are not explicitly allowed.
   home.sessionVariables.MUX_POLICY_FILE = "/home/steven/.mux/policy.json";
+
+  # Override Zoom's launcher so browser meeting links also avoid its unstable Wayland path.
+  home.file.".local/share/applications/Zoom.desktop".text = ''
+    [Desktop Entry]
+    Name=Zoom Workplace
+    Comment=Zoom Video Conference
+    Exec=env QT_QPA_PLATFORM=xcb zoom %U
+    Icon=Zoom
+    Terminal=false
+    Type=Application
+    Categories=Network;
+    StartupWMClass=zoom
+    MimeType=x-scheme-handler/zoommtg;x-scheme-handler/zoomus;x-scheme-handler/tel;x-scheme-handler/callto;x-scheme-handler/zoomphonecall;x-scheme-handler/zoomphonesms;x-scheme-handler/zoomcontactcentercall;application/x-zoom;
+    X-KDE-Protocols=zoommtg;zoomus;tel;callto;zoomphonecall;zoomphonesms;zoomcontactcentercall;
+  '';
 
   programs.home-manager.enable = true;
   # services.syncthing = {
@@ -160,7 +183,7 @@ in
     vlc
     # unstable.sublime # No longer works?
     # coder
-    zoom-us
+    zoom-x11 # Force X11 because Zoom's Wayland client crashes on surface commits.
     dconf-editor
     nix-direnv
     direnv
