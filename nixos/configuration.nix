@@ -33,6 +33,24 @@ in
       192.168.86.122 screeps.internal # 21025
     '';
 
+  # Mount the Windows Z share on first access. Boot continues normally when
+  # the Windows machine is offline.
+  boot.supportedFilesystems = [ "cifs" ];
+  fileSystems."/mnt/windows-z" = {
+    device = "//Desktop-a8r3ei5/z";
+    fsType = "cifs";
+    options = [
+      "credentials=/var/lib/smb-credentials/windows-z"
+      "uid=${user}"
+      "gid=users"
+      "file_mode=0644"
+      "dir_mode=0755"
+      "nofail"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=60"
+      "_netdev"
+    ];
+  };
 
   # Enable systemd user services.
   systemd.services.NetworkManager-wait-online = {
@@ -338,6 +356,7 @@ in
 
   # From https://nixos.wiki/wiki/AMD_GPU for HIP libraries
   systemd.tmpfiles.rules = [
+    "d /var/lib/smb-credentials 0700 root root -"
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
 
