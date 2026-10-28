@@ -25,6 +25,12 @@ in
     unmanaged = [ "tailscale0" ];
   };
 
+  # Resolve .local hostnames such as the Windows SMB server via mDNS.
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+  };
+
   networking.extraHosts =
     ''
       192.168.86.57 homeassistant.internal # 8123
@@ -37,7 +43,7 @@ in
   # the Windows machine is offline.
   boot.supportedFilesystems = [ "cifs" ];
   fileSystems."/mnt/windows-z" = {
-    device = "//Desktop-a8r3ei5/z";
+    device = "//Desktop-a8r3ei5.local/z";
     fsType = "cifs";
     options = [
       "credentials=/var/lib/smb-credentials/windows-z"
