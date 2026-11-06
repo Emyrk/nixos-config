@@ -2,12 +2,12 @@
 
 let
   pname = "xum";
-  version = "0.30.0";
+  version = "0.32.1";
   name = "${pname}-${version}";
 
   src = fetchurl {
     url = "https://github.com/coder/xum/releases/download/v${version}/xum-${version}-x86_64-linux.AppImage";
-    hash = "sha256-OOr5EXxPAm15oDyICBaLihgeYO+QivQE0w6ZbtoyvHc=";
+    hash = "sha256-LFB9kNXx9K+g4NzWC1Y6nzh+jkM4Yql7qUeZdONRVQA=";
   };
 
   appimageContents = appimageTools.extractType2 { inherit name src; };
