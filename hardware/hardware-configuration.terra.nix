@@ -30,6 +30,14 @@
     };
 
 
+  # Secondary Samsung 990 NVMe data drive.
+  fileSystems."/data" =
+    {
+      device = "/dev/disk/by-uuid/78ef7dfe-8c25-4303-92c8-76be11ce293d";
+      fsType = "ext4";
+      options = [ "nofail" ];
+    };
+
   swapDevices =
     [];
   # was [{ device = "/dev/disk/by-uuid/df262190-add8-4c58-a7b2-b55e055a0ce2"; }]
