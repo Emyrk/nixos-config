@@ -15,6 +15,10 @@ in
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # Keep Go build artifacts off the system drive. PAM applies this to CLI and
+  # desktop applications, including GoLand, on the next login.
+  environment.sessionVariables.GOCACHE = "/data/cache/go-build";
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -359,6 +363,21 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
+
+  # Create high-growth cache directories only after the data drive is mounted.
+  systemd.services.data-cache-directories = {
+    description = "Create cache directories on the data drive";
+    wantedBy = [ "multi-user.target" ];
+    requires = [ "data.mount" ];
+    after = [ "data.mount" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      ${pkgs.coreutils}/bin/install -d -m 0755 -o ${user} -g users \
+        /data/cache \
+        /data/cache/go-build \
+        /data/cache/chronicle-render-map
+    '';
+  };
 
   # From https://nixos.wiki/wiki/AMD_GPU for HIP libraries
   systemd.tmpfiles.rules = [
