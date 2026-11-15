@@ -375,7 +375,8 @@ in
       ${pkgs.coreutils}/bin/install -d -m 0755 -o ${user} -g users \
         /data/cache \
         /data/cache/go-build \
-        /data/cache/chronicle-render-map
+        /data/cache/chronicle-render-map \
+        /data/cache/spotify
     '';
   };
 

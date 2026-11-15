@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   protoc-gen-go-drpc = pkgs.callPackage ../pkgs/protoc-gen-go-drpc.nix { };
@@ -43,6 +43,12 @@ in
 
   # Prevent Xum from selecting providers that are not explicitly allowed.
   home.sessionVariables.MUX_POLICY_FILE = "/home/steven/.mux/policy.json";
+
+  # Keep Spotify's large Chromium and media cache on the data drive.
+  home.file.".cache/spotify" = {
+    source = config.lib.file.mkOutOfStoreSymlink "/data/cache/spotify";
+    force = true;
+  };
 
   # Override Zoom's launcher so browser meeting links also avoid its unstable Wayland path.
   home.file.".local/share/applications/Zoom.desktop".text = ''
